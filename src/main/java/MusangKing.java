@@ -40,13 +40,30 @@ public class MusangKing {
                     print("Yay! One less task to do!\n" +
                             "  " + taskList.markTaskDone(taskNo) + "\n");
                 } else {
-                    print("Aw man... back to the task list I guess...\n" +
+                    print("Aw man... back to the task list...\n" +
                             "  " + taskList.unmarkTaskDone(taskNo) + "\n");
                 }
 
-            } else {
-                print("Added: " + userInput + "\n");
-                taskList.addTask(new Task(userInput)); // stores the new task
+            } else { // assume the input is valid to add a task of specified type
+
+                Task newTask;
+                if (userInput.startsWith("todo")) {
+                    userInput = userInput.substring(5);
+                    newTask = new Task(userInput, TaskType.TODO);
+                } else if (userInput.startsWith("deadline")) {
+                    userInput = userInput.substring(9);
+                    newTask = new Task(userInput, TaskType.DEADLINE);
+                } else {
+                    userInput = userInput.substring(6);
+                    newTask = new Task(userInput, TaskType.EVENT);
+                }
+                taskList.addTask(newTask); // stores the new task
+                print(String.format("""
+                                Ookay! I've added this task:
+                                 %s
+                                Now you have %d tasks in the list.
+                                """,
+                        userInput, taskList.count));
             }
         }
     }

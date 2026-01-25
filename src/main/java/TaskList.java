@@ -4,9 +4,10 @@ import java.util.ArrayList;
 public class TaskList {
 
     private final List<Task> tasks;
+    public int count;
 
     /*
-     * Constructor initializes an empty list of tasks.
+     * Public constructor initializes an empty list of tasks.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -17,6 +18,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         this.tasks.add(task);
+        this.count++;
     }
 
     /*
