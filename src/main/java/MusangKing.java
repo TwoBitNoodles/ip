@@ -50,20 +50,30 @@ public class MusangKing {
                 if (userInput.startsWith("todo")) {
                     userInput = userInput.substring(5);
                     newTask = new Todo(userInput);
+
                 } else if (userInput.startsWith("deadline")) {
                     userInput = userInput.substring(9);
-                    newTask = new Deadline(userInput);
+                    String[] inputs = userInput.split(" /");
+                    String desc = inputs[0];
+                    String dueDate = inputs[1].substring(3);
+                    newTask = new Deadline(desc, dueDate);
+
                 } else {
                     userInput = userInput.substring(6);
-                    newTask = new Event(userInput);
+                    String[] inputs = userInput.split(" /");
+                    String desc = inputs[0];
+                    String start = inputs[1].substring(5);
+                    String end = inputs[2].substring(3);
+                    newTask = new Event(desc, start, end);
                 }
+
                 taskList.addTask(newTask); // stores the new task
                 print(String.format("""
                                 Ookay! I've added this task:
                                  %s
                                 Now you have %d tasks in the list.
                                 """,
-                        userInput, taskList.count));
+                        newTask, taskList.count));
             }
         }
     }
