@@ -20,19 +20,33 @@ public class MusangKing {
         TaskList taskList = new TaskList();
 
         while (flag) {
-            String userInput = sc.nextLine(); // reads user input
-            switch (userInput.toLowerCase()) {
-                case "bye":
-                    print("Bye! Come back, okay?\n");
-                    flag = false; // exits chat loop
-                    break;
-                case "list":
-                    print(taskList.toString());
-                    break;
-                default:
-                    print("Added: " + userInput + "\n");
-                    taskList.addTask(new Task(userInput)); // stores the new task
-                    break;
+            String userInput = sc.nextLine().toLowerCase(); // reads user input
+
+            if (userInput.equals("bye")) {
+                print("Bye! Come back, okay?\n");
+                flag = false; // exits chat loop
+
+            } else if (userInput.equals("list")) {
+                print(taskList.toString()); // prints the current list of tasks
+
+            } else if (userInput.startsWith("mark")
+                    || userInput.startsWith("unmark")) {
+
+                String[] inputs = userInput.split(" "); // assume input is valid
+                String action = inputs[0];
+                int taskNo = Integer.parseInt(inputs[1]);
+
+                if (action.equals("mark")) {
+                    print("Yay! One less task to do!\n" +
+                            "  " + taskList.markTaskDone(taskNo) + "\n");
+                } else {
+                    print("Aw man... back to the task list I guess...\n" +
+                            "  " + taskList.unmarkTaskDone(taskNo) + "\n");
+                }
+
+            } else {
+                print("Added: " + userInput + "\n");
+                taskList.addTask(new Task(userInput)); // stores the new task
             }
         }
     }
