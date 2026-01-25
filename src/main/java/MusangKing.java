@@ -49,13 +49,13 @@ public class MusangKing {
                 Task newTask;
                 if (userInput.startsWith("todo")) {
                     userInput = userInput.substring(5);
-                    newTask = new Task(userInput, TaskType.TODO);
+                    newTask = new Todo(userInput);
                 } else if (userInput.startsWith("deadline")) {
                     userInput = userInput.substring(9);
-                    newTask = new Task(userInput, TaskType.DEADLINE);
+                    newTask = new Deadline(userInput);
                 } else {
                     userInput = userInput.substring(6);
-                    newTask = new Task(userInput, TaskType.EVENT);
+                    newTask = new Event(userInput);
                 }
                 taskList.addTask(newTask); // stores the new task
                 print(String.format("""
