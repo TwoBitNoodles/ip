@@ -1,0 +1,9 @@
+todo buy japanese cheese bread
+deadline complete CS2103T quiz /by Friday 4pm
+event CS2101 tutorial /from Wednesday 3pm /to 6pm
+mark 1
+mark 3
+list
+blah
+help
+bye
