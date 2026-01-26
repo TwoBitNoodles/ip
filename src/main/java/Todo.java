@@ -1,16 +1,15 @@
 public class Todo extends Task {
 
-    /*
-     * Public constructor that initializes the task description
-     * as determined by the user.
-     * @param name the task description.
+    /**
+     * Public constructor initializes a Todo task with a given description.
+     * @param desc : the task description.
      */
     public Todo(String desc) {
         this.desc = desc;
     }
 
-    /*
-     * The string representation of the task.
+    /**
+     * @return the string representation of the task.
      */
     @Override
     public String toString() {

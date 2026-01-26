@@ -6,24 +6,25 @@ public class TaskList {
     private final List<Task> tasks;
     public int count;
 
-    /*
+    /**
      * Public constructor initializes an empty list of tasks.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
-    /*
+    /**
      * Add a task to the list of tasks.
+     * @param task : the new task to be added.
      */
     public void addTask(Task task) {
         this.tasks.add(task);
         this.count++;
     }
 
-    /*
+    /**
      * Mark a task as done.
-     * @param taskNo specifies the task that should be marked as done.
+     * @param taskNo : specifies the task that should be marked as done.
      * @return the string representation of the task after being marked done.
      */
     public String markTaskDone(int taskNo) {
@@ -32,9 +33,9 @@ public class TaskList {
         return markedTask.toString();
     }
 
-    /*
+    /**
      * Mark a task as not done yet.
-     * @param taskNo specifies the task that should be marked as not done yet.
+     * @param taskNo : specifies the task that should be marked as not done yet.
      * @return the string representation of the task after being unmarked.
      */
     public String unmarkTaskDone(int taskNo) {
@@ -43,8 +44,8 @@ public class TaskList {
         return markedTask.toString();
     }
 
-    /*
-     * String representation of the list of tasks.
+    /**
+     * @return the string representation of the list of tasks.
      */
     @Override
     public String toString() {

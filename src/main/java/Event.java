@@ -3,10 +3,12 @@ public class Event extends Task {
     private final String start;
     private final String end;
 
-    /*
-     * Public constructor that initializes the task description
-     * as determined by the user.
-     * @param name the task description.
+    /**
+     * Public constructor initializes an Event task with a
+     * given description, when the task starts and when the task ends.
+     * @param desc  : the task description.
+     * @param start : when the task starts.
+     * @param end   : when the task ends
      */
     public Event(String desc, String start, String end) {
         this.desc = desc;
@@ -14,8 +16,8 @@ public class Event extends Task {
         this.end = end;
     }
 
-    /*
-     * The string representation of the task.
+    /**
+     * @return the string representation of the task.
      */
     @Override
     public String toString() {
