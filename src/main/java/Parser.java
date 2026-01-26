@@ -31,6 +31,9 @@ public class Parser {
         } else if (input.toLowerCase().startsWith("event ")) {
             createEvent(input.substring(6));
 
+        } else if (input.equalsIgnoreCase("help")) {
+            helpResponse();
+
         } else {
             noMatchingCommandResponse();
         }
@@ -53,6 +56,7 @@ public class Parser {
 
     /**
      * Marks the given task as done.
+     * @param input : the task to be marked.
      */
     private void markResponse(String input) {
         int taskNo = Integer.parseInt(input);
@@ -62,6 +66,7 @@ public class Parser {
 
     /**
      * Marks the given task as not done yet.
+     * @param input : the task to be unmarked.
      */
     private void unmarkResponse(String input) {
         int taskNo = Integer.parseInt(input);
@@ -115,12 +120,35 @@ public class Parser {
                 task, taskList.count));
     }
 
+    private void helpResponse() {
+        print("""
+                list        : displays the current list of tasks.
+                mark <i>    : marks the ith task as done.
+                unmark <i>  : marks the ith task as not done yet.
+                todo <desc>
+                            : creates a new todo-type task with the
+                              description <desc>.
+                deadline <desc> /by <by>
+                            : creates a new deadline-type with the
+                              description <desc>, due by <by>.
+                event <desc> /from <start> /to <end>
+                            : creates a new event-type task with the
+                              description <desc>, that starts at <start>
+                              and ends at <end>.
+                help        : displays a valid list of commands and
+                              what they do.
+                """);
+    }
+
     /**
      * Displays an error message in the event that user input does
      * not match any of the known commands.
      */
     private void noMatchingCommandResponse() {
-        print("Hmm? I'm not sure what you want me to do...\n");
+        print("""
+                Hmm? I'm not sure what you want me to do...
+                To view all the commands I understand, type "help" :)
+                """);
     }
 
     /**
