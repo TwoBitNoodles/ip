@@ -17,9 +17,10 @@ public class TaskList {
      * Add a task to the list of tasks.
      * @param task : the new task to be added.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         this.tasks.add(task);
         this.count++;
+        return task.toString();
     }
 
     /**
@@ -42,6 +43,13 @@ public class TaskList {
         Task markedTask = this.tasks.get(taskNo-1);
         markedTask.unmarkDone();
         return markedTask.toString();
+    }
+
+    public String deleteTask(int taskNo) {
+        Task deletedTask = this.tasks.get(taskNo-1);
+        this.tasks.remove(taskNo-1);
+        this.count--;
+        return deletedTask.toString();
     }
 
     /**

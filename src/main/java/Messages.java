@@ -60,6 +60,16 @@ public class Messages {
         }
     }
 
+    public static class DeleteTaskMessage extends DisplayMessage {
+        public DeleteTaskMessage(String task, int count) {
+            super(String.format("""
+                    This task is gone, forever. (A long time).
+                    %s
+                    You still have %d tasks. Don't slack off!
+                    """, task, count));
+        }
+    }
+
     public static class HelpMessage extends DisplayMessage {
         private HelpMessage() {
             super("""

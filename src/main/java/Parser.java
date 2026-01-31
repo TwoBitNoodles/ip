@@ -34,6 +34,9 @@ public class Parser {
         } else if (input.toLowerCase().matches("^event\\b.*$")) {
             return createEvent(input.substring(5).strip());
 
+        } else if ((input.toLowerCase().matches("^delete\\b.*$"))) {
+            return deleteTaskResponse(input.substring(6).strip());
+
         } else if (input.equalsIgnoreCase("help")) {
             return Messages.HELP;
 
@@ -191,7 +194,35 @@ public class Parser {
      *               of tasks in the task list.
      */
     private DisplayMessage addTaskResponse(Task task) {
-        this.taskList.addTask(task);
-        return new Messages.NewTaskMessage(task.toString(), taskList.count);
+        String newTask = this.taskList.addTask(task);
+        return new Messages.NewTaskMessage(newTask, this.taskList.count);
+    }
+
+    /**
+     * Deletes a task from the task list
+     * @param input : the task to be deleted.
+     * @return      : DisplayMessage with the string representation
+     *                of the task to be deleted.
+     */
+    private DisplayMessage deleteTaskResponse(String input) {
+        if (input.isEmpty()) {
+            throw new Exceptions.MissingFieldException(
+                    "the task you want to delete",
+                    "delete it"
+            );
+        }
+        try {
+            int taskNo = Integer.parseInt(input);
+            if (taskNo < 1 || taskNo > taskList.count) {
+                throw Exceptions.TASK_OUT_OF_BOUNDS;
+            }
+            String task = this.taskList.deleteTask(taskNo);
+            return new Messages.DeleteTaskMessage(task, this.taskList.count);
+        } catch (NumberFormatException e) {
+            throw new Exceptions.InvalidInputException(
+                    "task number",
+                    "an integer"
+            );
+        }
     }
 }
