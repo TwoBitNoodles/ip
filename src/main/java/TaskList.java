@@ -49,7 +49,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder("Here are the tasks in your list:\n");
+        StringBuilder s = new StringBuilder("\n");
         int i = 1;
         for (Task task : this.tasks) {
             s.append(String.format("%d.%s\n", i++, task));

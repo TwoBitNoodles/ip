@@ -8,10 +8,7 @@ public class MusangKing {
         /*
          * Chat starts with a greeting message.
          */
-        Parser.print("""
-                Hello! I'm MusangKing :)
-                What can I do for you?
-                """);
+        System.out.println(Messages.GREETING);
 
         /*
          * Initialize Parser object to enable the chat loop.
@@ -19,7 +16,13 @@ public class MusangKing {
         Scanner sc = new Scanner(System.in);
         Parser parser = new Parser();
         while (flag) {
-            parser.parse(sc.nextLine());
+            DisplayMessage msg;
+            try {
+                msg = parser.parse(sc.nextLine());
+                System.out.println(msg);
+            } catch (MusangKingException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

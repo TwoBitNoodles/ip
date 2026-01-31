@@ -3,161 +3,195 @@ public class Parser {
     private final TaskList taskList = new TaskList();
 
     /**
-     * This is the main method that parses user input.
-     * Given user input, it displays an appropriate response and
-     * carries out the relevant operations.
+     * Takes in user input and carries out the relevant
+     * operations and appropriate response.
      * @param input : the user's input.
+     * @return      : DisplayMessage containing the response to be displayed.
      */
-    public void parse(String input) {
+    public DisplayMessage parse(String input) {
+        // remove trailing whitespace and
+        // replace multiple whitespaces with a single whitespace.
         input = input.strip().replaceAll("\\s+", " ");
-        if (input.toLowerCase().contains("bye")) {
-            byeResponse();
+
+        if (input.equalsIgnoreCase("bye")) {
+            return byeResponse();
 
         } else if (input.equalsIgnoreCase("list")) {
-            listResponse();
+            return listResponse();
 
-        } else if (input.toLowerCase().startsWith("mark ")) {
-            markResponse(input.substring(5));
+        } else if (input.toLowerCase().matches("^mark\\b.*$")) {
+            return markResponse(input.substring(4).strip());
 
-        } else if (input.toLowerCase().startsWith("unmark ")) {
-            unmarkResponse(input.substring(7));
+        } else if (input.toLowerCase().matches("^unmark\\b.*$")) {
+            return unmarkResponse(input.substring(6).strip());
 
-        } else if (input.toLowerCase().startsWith("todo ")) {
-            createTodo(input.substring(5));
+        } else if (input.toLowerCase().matches("^todo\\b.*$")) {
+            return createTodo(input.substring(4).strip());
 
-        } else if (input.toLowerCase().startsWith("deadline ")) {
-            createDeadline(input.substring(9));
+        } else if (input.toLowerCase().matches("^deadline\\b.*$")) {
+            return createDeadline(input.substring(8).strip());
 
-        } else if (input.toLowerCase().startsWith("event ")) {
-            createEvent(input.substring(6));
+        } else if (input.toLowerCase().matches("^event\\b.*$")) {
+            return createEvent(input.substring(5).strip());
 
         } else if (input.equalsIgnoreCase("help")) {
-            helpResponse();
+            return Messages.HELP;
 
         } else {
-            noMatchingCommandResponse();
+            throw Exceptions.INVALID_COMMAND;
         }
     }
 
     /**
-     * Displays a goodbye message and exits the chat loop.
+     * Exits the chat loop.
+     * @return GOODBYE message.
      */
-    private void byeResponse() {
-        print("Bye! Come back, okay?\n");
+    private DisplayMessage byeResponse() {
         MusangKing.flag = false;
+        return Messages.GOODBYE;
     }
 
     /**
-     * Displays the string representation of the current list of tasks.
+     * @return : DisplayMessage with the string representation
+     *           of the list of tasks.
      */
-    private void listResponse() {
-        print(this.taskList.toString());
+    private DisplayMessage listResponse() {
+        return new Messages.TaskListMessage(this.taskList.toString());
     }
 
     /**
      * Marks the given task as done.
      * @param input : the task to be marked.
+     * @return      : DisplayMessage with the string representation
+     *                of the marked task.
      */
-    private void markResponse(String input) {
-        int taskNo = Integer.parseInt(input);
-        print("Yay! One less task to do!\n" +
-                "  " + this.taskList.markTaskDone(taskNo) + "\n");
+    private DisplayMessage markResponse(String input) {
+        if (input.isEmpty()) {
+            throw new Exceptions.MissingFieldException(
+                    "the task you want to mark",
+                    "mark it"
+            );
+        }
+        try {
+            int taskNo = Integer.parseInt(input);
+            if (taskNo < 1 || taskNo > taskList.count) {
+                throw Exceptions.TASK_OUT_OF_BOUNDS;
+            }
+            String task = this.taskList.markTaskDone(taskNo);
+            return new Messages.MarkTaskMessage(task);
+        } catch (NumberFormatException e) {
+            throw new Exceptions.InvalidInputException(
+                    "task number",
+                    "an integer"
+            );
+        }
     }
 
     /**
      * Marks the given task as not done yet.
      * @param input : the task to be unmarked.
+     * @return      : DisplayMessage with the string representation
+     *                of the unmarked task.
      */
-    private void unmarkResponse(String input) {
-        int taskNo = Integer.parseInt(input);
-        print("Aw man... back to the task list...\n" +
-                "  " + this.taskList.unmarkTaskDone(taskNo) + "\n");
+    private DisplayMessage unmarkResponse(String input) {
+        if (input.isEmpty()) {
+            throw new Exceptions.MissingFieldException(
+                    "the task you want to unmark",
+                    "unmark it"
+            );
+        }
+        try {
+            int taskNo = Integer.parseInt(input);
+            if (taskNo < 1 || taskNo > taskList.count) {
+                throw Exceptions.TASK_OUT_OF_BOUNDS;
+            }
+            String task = this.taskList.unmarkTaskDone(taskNo);
+            return new Messages.UnmarkTaskMessage(task);
+        } catch (NumberFormatException e) {
+            throw new Exceptions.InvalidInputException(
+                    "task number",
+                    "an integer"
+            );
+        }
     }
 
     /**
      * Creates a new Todo task.
      * @param input : a description of the new Todo task.
+     * @return      : DisplayMessage object.
      */
-    private void createTodo(String input) {
-        Task newTask = new Todo(input); // assume for now the input is valid
-        addTaskResponse(newTask);
+    private DisplayMessage createTodo(String input) {
+        if (input.isEmpty()) {
+            throw new Exceptions.MissingFieldException(
+                    "your task description",
+                    "add your todo task to the list"
+            );
+        }
+        Task newTask = new Todo(input);
+        return addTaskResponse(newTask);
     }
 
     /**
      * Creates a new Deadline task.
-     * @param input : a description of the new Deadline task,
-     *              followed by when it is due, in the following format: <desc> /by <by>.
+     * @param input : a description of the new Deadline task, followed
+     *                by when it is due, in the following format: <desc> /by <by>.
+     * @return      : DisplayMessage object.
      */
-    private void createDeadline(String input) {
+    private DisplayMessage createDeadline(String input) {
+        if (input.isEmpty()) {
+            throw new Exceptions.MissingFieldException(
+                    "your task description",
+                    "add your deadline task to the list"
+            );
+        } else if (!input.contains(" /by ")) {
+            throw new Exceptions.MissingFieldException(
+                    "when your task is due",
+                    "add your deadline task to the list"
+            );
+        }
         String[] args = input.split(" /by "); // assume for now the input is valid
         Task newTask = new Deadline(args[0], args[1]);
-        addTaskResponse(newTask);
+        return addTaskResponse(newTask);
     }
 
     /**
      * Creates a new Event task.
      * @param input : a description of the new Event task, followed by when it starts
-     *              and when it ends, in the following format: <desc> /from <start> /to <end>.
+     *                and when it ends, in the following format:
+     *                <desc> /from <start> /to <end>.
+     * @return      : DisplayMessage object.
      */
-    private void createEvent(String input) {
-        String[] args = input.split(" /from | /to "); // assume for now the input is valid
+    private DisplayMessage createEvent(String input) {
+        if (input.isEmpty()) {
+            throw new Exceptions.MissingFieldException(
+                    "your task description",
+                    "add your event task to the list"
+            );
+        } else if (!input.contains(" /from ")) {
+            throw new Exceptions.MissingFieldException(
+                    "when your task begins",
+                    "add your event task to the list"
+            );
+        } else if (!input.contains(" /to ")) {
+            throw new Exceptions.MissingFieldException(
+                    "when your task ends",
+                    "add your event task to the list"
+            );
+        }
+        String[] args = input.split(" /from | /to ");
         Task newTask = new Event(args[0], args[1], args[2]);
-        addTaskResponse(newTask);
+        return addTaskResponse(newTask);
     }
 
     /**
-     * Adds a newly created task to the task list and
-     * displays its string representation once added.
+     * Adds a newly created task to the task list.
      * @param task : a newly created task.
+     * @return     : DisplayMessage with the string representation
+     *               of the newly added task and the new total number
+     *               of tasks in the task list.
      */
-    private void addTaskResponse(Task task) {
+    private DisplayMessage addTaskResponse(Task task) {
         this.taskList.addTask(task);
-        print(String.format("""
-                Oookay! I've added this task:
-                %s
-                That makes %d tasks in the list!
-                """,
-                task, taskList.count));
-    }
-
-    private void helpResponse() {
-        print("""
-                list        : displays the current list of tasks.
-                mark <i>    : marks the ith task as done.
-                unmark <i>  : marks the ith task as not done yet.
-                todo <desc>
-                            : creates a new todo-type task with the
-                              description <desc>.
-                deadline <desc> /by <by>
-                            : creates a new deadline-type with the
-                              description <desc>, due by <by>.
-                event <desc> /from <start> /to <end>
-                            : creates a new event-type task with the
-                              description <desc>, that starts at <start>
-                              and ends at <end>.
-                help        : displays a valid list of commands and
-                              what they do.
-                """);
-    }
-
-    /**
-     * Displays an error message in the event that user input does
-     * not match any of the known commands.
-     */
-    private void noMatchingCommandResponse() {
-        print("""
-                Hmm? I'm not sure what you want me to do...
-                To view all the commands I understand, type "help" :)
-                """);
-    }
-
-    /**
-     * Static helper function simplifies printing messages
-     * between horizontal lines.
-     * @param msg : the message to be sandwiched between horizontal lines.
-     */
-    public static void print(String msg) {
-        String line = "_".repeat(60) + "\n";
-        System.out.println(line + msg + line);
+        return new Messages.NewTaskMessage(task.toString(), taskList.count);
     }
 }
