@@ -1,7 +1,7 @@
 public class Event extends Task {
 
-    private final String start;
-    private final String end;
+    public final String start;
+    public final String end;
 
     /**
      * Public constructor initializes an Event task with a

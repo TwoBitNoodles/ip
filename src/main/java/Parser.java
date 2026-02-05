@@ -1,14 +1,12 @@
 public class Parser {
 
-    private final TaskList taskList = new TaskList();
-
     /**
      * Takes in user input and carries out the relevant
      * operations and appropriate response.
      * @param input : the user's input.
      * @return      : DisplayMessage containing the response to be displayed.
      */
-    public DisplayMessage parse(String input) {
+    public DisplayMessage parse(TaskList taskList, String input) {
         // remove trailing whitespace and
         // replace multiple whitespaces with a single whitespace.
         input = input.strip().replaceAll("\\s+", " ");
@@ -17,25 +15,25 @@ public class Parser {
             return byeResponse();
 
         } else if (input.equalsIgnoreCase("list")) {
-            return listResponse();
+            return listResponse(taskList);
 
         } else if (input.toLowerCase().matches("^mark\\b.*$")) {
-            return markResponse(input.substring(4).strip());
+            return markResponse(taskList, input.substring(4).strip());
 
         } else if (input.toLowerCase().matches("^unmark\\b.*$")) {
-            return unmarkResponse(input.substring(6).strip());
+            return unmarkResponse(taskList, input.substring(6).strip());
 
         } else if (input.toLowerCase().matches("^todo\\b.*$")) {
-            return createTodo(input.substring(4).strip());
+            return createTodo(taskList, input.substring(4).strip());
 
         } else if (input.toLowerCase().matches("^deadline\\b.*$")) {
-            return createDeadline(input.substring(8).strip());
+            return createDeadline(taskList, input.substring(8).strip());
 
         } else if (input.toLowerCase().matches("^event\\b.*$")) {
-            return createEvent(input.substring(5).strip());
+            return createEvent(taskList, input.substring(5).strip());
 
         } else if ((input.toLowerCase().matches("^delete\\b.*$"))) {
-            return deleteTaskResponse(input.substring(6).strip());
+            return deleteTaskResponse(taskList, input.substring(6).strip());
 
         } else if (input.equalsIgnoreCase("help")) {
             return Messages.HELP;
@@ -58,8 +56,8 @@ public class Parser {
      * @return : DisplayMessage with the string representation
      *           of the list of tasks.
      */
-    private DisplayMessage listResponse() {
-        return new Messages.TaskListMessage(this.taskList.toString());
+    private DisplayMessage listResponse(TaskList taskList) {
+        return new Messages.TaskListMessage(taskList.toString());
     }
 
     /**
@@ -68,7 +66,7 @@ public class Parser {
      * @return      : DisplayMessage with the string representation
      *                of the marked task.
      */
-    private DisplayMessage markResponse(String input) {
+    private DisplayMessage markResponse(TaskList taskList, String input) {
         if (input.isEmpty()) {
             throw new Exceptions.MissingFieldException(
                     "the task you want to mark",
@@ -80,7 +78,7 @@ public class Parser {
             if (taskNo < 1 || taskNo > taskList.count) {
                 throw Exceptions.TASK_OUT_OF_BOUNDS;
             }
-            String task = this.taskList.markTaskDone(taskNo);
+            String task = taskList.markTaskDone(taskNo);
             return new Messages.MarkTaskMessage(task);
         } catch (NumberFormatException e) {
             throw new Exceptions.InvalidInputException(
@@ -96,7 +94,7 @@ public class Parser {
      * @return      : DisplayMessage with the string representation
      *                of the unmarked task.
      */
-    private DisplayMessage unmarkResponse(String input) {
+    private DisplayMessage unmarkResponse(TaskList taskList, String input) {
         if (input.isEmpty()) {
             throw new Exceptions.MissingFieldException(
                     "the task you want to unmark",
@@ -108,7 +106,7 @@ public class Parser {
             if (taskNo < 1 || taskNo > taskList.count) {
                 throw Exceptions.TASK_OUT_OF_BOUNDS;
             }
-            String task = this.taskList.unmarkTaskDone(taskNo);
+            String task = taskList.unmarkTaskDone(taskNo);
             return new Messages.UnmarkTaskMessage(task);
         } catch (NumberFormatException e) {
             throw new Exceptions.InvalidInputException(
@@ -123,7 +121,7 @@ public class Parser {
      * @param input : a description of the new Todo task.
      * @return      : DisplayMessage object.
      */
-    private DisplayMessage createTodo(String input) {
+    private DisplayMessage createTodo(TaskList taskList, String input) {
         if (input.isEmpty()) {
             throw new Exceptions.MissingFieldException(
                     "your task description",
@@ -131,7 +129,7 @@ public class Parser {
             );
         }
         Task newTask = new Todo(input);
-        return addTaskResponse(newTask);
+        return addTaskResponse(taskList, newTask);
     }
 
     /**
@@ -140,7 +138,7 @@ public class Parser {
      *                by when it is due, in the following format: <desc> /by <by>.
      * @return      : DisplayMessage object.
      */
-    private DisplayMessage createDeadline(String input) {
+    private DisplayMessage createDeadline(TaskList taskList, String input) {
         if (input.isEmpty()) {
             throw new Exceptions.MissingFieldException(
                     "your task description",
@@ -154,7 +152,7 @@ public class Parser {
         }
         String[] args = input.split(" /by "); // assume for now the input is valid
         Task newTask = new Deadline(args[0], args[1]);
-        return addTaskResponse(newTask);
+        return addTaskResponse(taskList, newTask);
     }
 
     /**
@@ -164,7 +162,7 @@ public class Parser {
      *                <desc> /from <start> /to <end>.
      * @return      : DisplayMessage object.
      */
-    private DisplayMessage createEvent(String input) {
+    private DisplayMessage createEvent(TaskList taskList, String input) {
         if (input.isEmpty()) {
             throw new Exceptions.MissingFieldException(
                     "your task description",
@@ -183,7 +181,7 @@ public class Parser {
         }
         String[] args = input.split(" /from | /to ");
         Task newTask = new Event(args[0], args[1], args[2]);
-        return addTaskResponse(newTask);
+        return addTaskResponse(taskList, newTask);
     }
 
     /**
@@ -193,9 +191,9 @@ public class Parser {
      *               of the newly added task and the new total number
      *               of tasks in the task list.
      */
-    private DisplayMessage addTaskResponse(Task task) {
-        String newTask = this.taskList.addTask(task);
-        return new Messages.NewTaskMessage(newTask, this.taskList.count);
+    private DisplayMessage addTaskResponse(TaskList taskList, Task task) {
+        String newTask = taskList.addTask(task);
+        return new Messages.NewTaskMessage(newTask, taskList.count);
     }
 
     /**
@@ -204,7 +202,7 @@ public class Parser {
      * @return      : DisplayMessage with the string representation
      *                of the task to be deleted.
      */
-    private DisplayMessage deleteTaskResponse(String input) {
+    private DisplayMessage deleteTaskResponse(TaskList taskList, String input) {
         if (input.isEmpty()) {
             throw new Exceptions.MissingFieldException(
                     "the task you want to delete",
@@ -216,8 +214,8 @@ public class Parser {
             if (taskNo < 1 || taskNo > taskList.count) {
                 throw Exceptions.TASK_OUT_OF_BOUNDS;
             }
-            String task = this.taskList.deleteTask(taskNo);
-            return new Messages.DeleteTaskMessage(task, this.taskList.count);
+            String task = taskList.deleteTask(taskNo);
+            return new Messages.DeleteTaskMessage(task, taskList.count);
         } catch (NumberFormatException e) {
             throw new Exceptions.InvalidInputException(
                     "task number",

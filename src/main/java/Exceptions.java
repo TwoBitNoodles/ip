@@ -2,6 +2,7 @@ public class Exceptions {
 
     public static final MusangKingException INVALID_COMMAND = new InvalidCommandException();
     public static final MusangKingException TASK_OUT_OF_BOUNDS = new TaskOutOfBoundsException();
+    public static final MusangKingException DATA_CORRUPTION = new DataCorruptionException();
 
     public static class InvalidCommandException extends MusangKingException {
         private InvalidCommandException() {
@@ -33,6 +34,15 @@ public class Exceptions {
         private TaskOutOfBoundsException() {
             super("""
                     What? Please enter a valid task number!
+                    """);
+        }
+    }
+
+    public static class DataCorruptionException extends MusangKingException {
+        private DataCorruptionException() {
+            super("""
+                    The save file from the previous session is corrupted.
+                    Creating new save file...
                     """);
         }
     }
