@@ -1,6 +1,6 @@
 public class Deadline extends Task {
 
-    private final String by;
+    public final String by;
 
     /**
      * Public constructor initializes a Deadline task with a

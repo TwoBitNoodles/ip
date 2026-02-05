@@ -13,6 +13,10 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    public Task getTask(int idx) {
+        return tasks.get(idx);
+    }
+
     /**
      * Add a task to the list of tasks.
      * @param task : the new task to be added.
