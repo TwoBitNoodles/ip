@@ -3,6 +3,7 @@ public class Exceptions {
     public static final MusangKingException INVALID_COMMAND = new InvalidCommandException();
     public static final MusangKingException TASK_OUT_OF_BOUNDS = new TaskOutOfBoundsException();
     public static final MusangKingException DATA_CORRUPTION = new DataCorruptionException();
+    public static final MusangKingException INVALID_DATE_FORMAT = new InvalidDateFormatException();
 
     public static class InvalidCommandException extends MusangKingException {
         private InvalidCommandException() {
@@ -43,6 +44,16 @@ public class Exceptions {
             super("""
                     The save file from the previous session is corrupted.
                     Creating new save file...
+                    """);
+        }
+    }
+
+    public static class InvalidDateFormatException extends MusangKingException {
+        private InvalidDateFormatException() {
+            super("""
+                    Do you not know how to write the date?
+                    I'll show you, you need to enter it as YYYY-MM-DD!
+                    And I only take REAL dates!
                     """);
         }
     }

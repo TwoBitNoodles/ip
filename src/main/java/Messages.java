@@ -76,6 +76,7 @@ public class Messages {
                     list        : displays the current list of tasks.
                     mark <i>    : marks the <i>th task as done.
                     unmark <i>  : marks the <i>th task as not done yet.
+                    delete <i>  : deletes the <i>th task.
                     todo <desc>
                                 : creates a new todo-type task with the
                                   description <desc>.
