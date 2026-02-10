@@ -14,7 +14,7 @@ public class MusangKing {
         TaskList taskList = new TaskList();
         DisplayMessage msg;
         try {
-            msg = FileManager.initialiseFileManager(taskList);
+            msg = Storage.initialiseFileManager(taskList);
             System.out.println(msg);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -23,7 +23,7 @@ public class MusangKing {
         /*
          * Chat starts with a greeting message.
          */
-        System.out.println(Messages.GREETING);
+        System.out.println(Ui.GREETING);
 
         /*
          * Initialize Parser object to enable the chat loop.
@@ -42,7 +42,7 @@ public class MusangKing {
         }
 
         try {
-            FileManager.updateFile(taskList);
+            Storage.updateFile(taskList);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

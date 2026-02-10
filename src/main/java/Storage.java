@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
-public class FileManager {
+public class Storage {
     private static final Path dirPath = Paths.get("data/");
     private static final Path filePath = Paths.get("data/TasklistSaveFile.txt");
     private static final Path tempPath = Paths.get("data/temp.txt");

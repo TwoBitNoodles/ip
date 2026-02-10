@@ -1,4 +1,4 @@
-public class Messages {
+public class Ui {
 
     public static final DisplayMessage GREETING = new GreetingMessage();
     public static final DisplayMessage GOODBYE = new GoodbyeMessage();

@@ -39,7 +39,7 @@ public class Parser {
             return deleteTaskResponse(taskList, input.substring(6).strip());
 
         } else if (input.equalsIgnoreCase("help")) {
-            return Messages.HELP;
+            return Ui.HELP;
 
         } else {
             throw Exceptions.INVALID_COMMAND;
@@ -52,7 +52,7 @@ public class Parser {
      */
     private DisplayMessage byeResponse() {
         MusangKing.flag = false;
-        return Messages.GOODBYE;
+        return Ui.GOODBYE;
     }
 
     /**
@@ -60,7 +60,7 @@ public class Parser {
      *           of the list of tasks.
      */
     private DisplayMessage listResponse(TaskList taskList) {
-        return new Messages.TaskListMessage(taskList.toString());
+        return new Ui.TaskListMessage(taskList.toString());
     }
 
     /**
@@ -82,7 +82,7 @@ public class Parser {
                 throw Exceptions.TASK_OUT_OF_BOUNDS;
             }
             String task = taskList.markTaskDone(taskNo);
-            return new Messages.MarkTaskMessage(task);
+            return new Ui.MarkTaskMessage(task);
         } catch (NumberFormatException e) {
             throw new Exceptions.InvalidInputException(
                     "task number",
@@ -110,7 +110,7 @@ public class Parser {
                 throw Exceptions.TASK_OUT_OF_BOUNDS;
             }
             String task = taskList.unmarkTaskDone(taskNo);
-            return new Messages.UnmarkTaskMessage(task);
+            return new Ui.UnmarkTaskMessage(task);
         } catch (NumberFormatException e) {
             throw new Exceptions.InvalidInputException(
                     "task number",
@@ -201,7 +201,7 @@ public class Parser {
      */
     private DisplayMessage addTaskResponse(TaskList taskList, Task task) {
         String newTask = taskList.addTask(task);
-        return new Messages.NewTaskMessage(newTask, taskList.count);
+        return new Ui.NewTaskMessage(newTask, taskList.count);
     }
 
     /**
@@ -223,7 +223,7 @@ public class Parser {
                 throw Exceptions.TASK_OUT_OF_BOUNDS;
             }
             String task = taskList.deleteTask(taskNo);
-            return new Messages.DeleteTaskMessage(task, taskList.count);
+            return new Ui.DeleteTaskMessage(task, taskList.count);
         } catch (NumberFormatException e) {
             throw new Exceptions.InvalidInputException(
                     "task number",
