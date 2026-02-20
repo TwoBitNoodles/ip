@@ -1,3 +1,5 @@
+package MusangKing;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class Parser {
      * Takes in user input and carries out the relevant
      * operations and appropriate response.
      * @param input : the user's input.
-     * @return      : DisplayMessage containing the response to be displayed.
+     * @return      : MusangKing.DisplayMessage containing the response to be displayed.
      */
     public DisplayMessage parse(TaskList taskList, String input) {
         // remove trailing whitespace and
@@ -56,7 +58,7 @@ public class Parser {
     }
 
     /**
-     * @return : DisplayMessage with the string representation
+     * @return : MusangKing.DisplayMessage with the string representation
      *           of the list of tasks.
      */
     private DisplayMessage listResponse(TaskList taskList) {
@@ -66,7 +68,7 @@ public class Parser {
     /**
      * Marks the given task as done.
      * @param input : the task to be marked.
-     * @return      : DisplayMessage with the string representation
+     * @return      : MusangKing.DisplayMessage with the string representation
      *                of the marked task.
      */
     private DisplayMessage markResponse(TaskList taskList, String input) {
@@ -94,7 +96,7 @@ public class Parser {
     /**
      * Marks the given task as not done yet.
      * @param input : the task to be unmarked.
-     * @return      : DisplayMessage with the string representation
+     * @return      : MusangKing.DisplayMessage with the string representation
      *                of the unmarked task.
      */
     private DisplayMessage unmarkResponse(TaskList taskList, String input) {
@@ -120,9 +122,9 @@ public class Parser {
     }
 
     /**
-     * Creates a new Todo task.
-     * @param input : a description of the new Todo task.
-     * @return      : DisplayMessage object.
+     * Creates a new MusangKing.Todo task.
+     * @param input : a description of the new MusangKing.Todo task.
+     * @return      : MusangKing.DisplayMessage object.
      */
     private DisplayMessage createTodo(TaskList taskList, String input) {
         if (input.isEmpty()) {
@@ -136,10 +138,10 @@ public class Parser {
     }
 
     /**
-     * Creates a new Deadline task.
-     * @param input : a description of the new Deadline task, followed
+     * Creates a new MusangKing.Deadline task.
+     * @param input : a description of the new MusangKing.Deadline task, followed
      *                by when it is due, in the following format: <desc> /by <by>.
-     * @return      : DisplayMessage object.
+     * @return      : MusangKing.DisplayMessage object.
      */
     private DisplayMessage createDeadline(TaskList taskList, String input) {
         if (input.isEmpty()) {
@@ -164,11 +166,11 @@ public class Parser {
     }
 
     /**
-     * Creates a new Event task.
-     * @param input : a description of the new Event task, followed by when it starts
+     * Creates a new MusangKing.Event task.
+     * @param input : a description of the new MusangKing.Event task, followed by when it starts
      *                and when it ends, in the following format:
      *                <desc> /from <start> /to <end>.
-     * @return      : DisplayMessage object.
+     * @return      : MusangKing.DisplayMessage object.
      */
     private DisplayMessage createEvent(TaskList taskList, String input) {
         if (input.isEmpty()) {
@@ -195,7 +197,7 @@ public class Parser {
     /**
      * Adds a newly created task to the task list.
      * @param task : a newly created task.
-     * @return     : DisplayMessage with the string representation
+     * @return     : MusangKing.DisplayMessage with the string representation
      *               of the newly added task and the new total number
      *               of tasks in the task list.
      */
@@ -207,7 +209,7 @@ public class Parser {
     /**
      * Deletes a task from the task list
      * @param input : the task to be deleted.
-     * @return      : DisplayMessage with the string representation
+     * @return      : MusangKing.DisplayMessage with the string representation
      *                of the task to be deleted.
      */
     private DisplayMessage deleteTaskResponse(TaskList taskList, String input) {

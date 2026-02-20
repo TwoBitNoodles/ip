@@ -1,10 +1,12 @@
+package MusangKing;
+
 public class Event extends Task {
 
     public final String start;
     public final String end;
 
     /**
-     * Public constructor initializes an Event task with a
+     * Public constructor initializes an MusangKing.Event task with a
      * given description, when the task starts and when the task ends.
      * @param desc  : the task description.
      * @param start : when the task starts.

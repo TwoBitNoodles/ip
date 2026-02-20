@@ -1,7 +1,9 @@
+package MusangKing;
+
 public class Todo extends Task {
 
     /**
-     * Public constructor initializes a Todo task with a given description.
+     * Public constructor initializes a MusangKing.Todo task with a given description.
      * @param desc : the task description.
      */
     public Todo(String desc) {

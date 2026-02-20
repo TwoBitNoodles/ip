@@ -1,9 +1,11 @@
+package MusangKing;
+
 public class Deadline extends Task {
 
     public final String by;
 
     /**
-     * Public constructor initializes a Deadline task with a
+     * Public constructor initializes a MusangKing.Deadline task with a
      * given description and when the task is due.
      * @param desc : the task description.
      * @param by   : when the task is due.

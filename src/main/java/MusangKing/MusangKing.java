@@ -1,3 +1,5 @@
+package MusangKing;
+
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -7,7 +9,7 @@ public class MusangKing {
 
     public static void main(String[] args) {
         /*
-         * Initialize TaskList object.
+         * Initialize MusangKing.TaskList object.
          * Initialize FileManager to check for save files
          * and update tasklist accordingly.
          */
@@ -26,7 +28,7 @@ public class MusangKing {
         System.out.println(Ui.GREETING);
 
         /*
-         * Initialize Parser object to enable the chat loop.
+         * Initialize MusangKing.Parser object to enable the chat loop.
          */
         Scanner sc = new Scanner(System.in);
         Parser parser = new Parser();

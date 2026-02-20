@@ -1,3 +1,5 @@
+package MusangKing;
+
 public class DisplayMessage {
     protected final String msg;
 

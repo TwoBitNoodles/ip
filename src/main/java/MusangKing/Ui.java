@@ -1,3 +1,5 @@
+package MusangKing;
+
 public class Ui {
 
     public static final DisplayMessage GREETING = new GreetingMessage();

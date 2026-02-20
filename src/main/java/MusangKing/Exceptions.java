@@ -1,3 +1,5 @@
+package MusangKing;
+
 public class Exceptions {
 
     public static final MusangKingException INVALID_COMMAND = new InvalidCommandException();
