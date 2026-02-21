@@ -72,6 +72,15 @@ public class Ui {
         }
     }
 
+    public static class FindTaskMessage extends DisplayMessage {
+        public FindTaskMessage(String matchingTasks) {
+            super(String.format("""
+                    Are any of these what you're looking for?
+                    %s
+                    """, matchingTasks));
+        }
+    }
+
     public static class HelpMessage extends DisplayMessage {
         private HelpMessage() {
             super("""

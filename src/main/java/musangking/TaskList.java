@@ -58,6 +58,16 @@ public class TaskList {
         return deletedTask.toString();
     }
 
+    public String findTask(String key) {
+        TaskList matchingTasks = new TaskList();
+        for (Task task : this.tasks) {
+            if (task.desc.contains(key)) {
+                matchingTasks.addTask(task);
+            }
+        }
+        return matchingTasks.toString();
+    }
+
     /**
      * @return the string representation of the list of tasks.
      */
