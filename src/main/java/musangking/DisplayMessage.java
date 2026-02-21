@@ -1,4 +1,4 @@
-package MusangKing;
+package musangking;
 
 public class DisplayMessage {
     protected final String msg;

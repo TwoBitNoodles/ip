@@ -1,4 +1,4 @@
-package MusangKing;
+package musangking;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package MusangKing;
+package musangking;
 
 public class Todo extends Task {
 
