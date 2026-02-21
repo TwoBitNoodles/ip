@@ -24,6 +24,9 @@ public class Parser {
         } else if (input.equalsIgnoreCase("list")) {
             return listResponse(taskList);
 
+        } else if (input.toLowerCase().matches("^find\\b.*$")) {
+            return findResponse(taskList, input.substring(4).strip());
+
         } else if (input.toLowerCase().matches("^mark\\b.*$")) {
             return markResponse(taskList, input.substring(4).strip());
 
@@ -67,6 +70,9 @@ public class Parser {
         return new Ui.TaskListMessage(taskList.toString());
     }
 
+    private DisplayMessage findResponse(TaskList taskList, String key) {
+        return new Ui.FindTaskMessage(taskList.findTask(key));
+    }
     /**
      * Marks the given task as done.
      * @param input : the task to be marked.

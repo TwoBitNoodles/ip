@@ -72,13 +72,18 @@ public class Ui {
         }
     }
 
+    public static class FindTaskMessage extends DisplayMessage {
+        public FindTaskMessage(String matchingTasks) {
+            super(String.format("""
+                    Are any of these what you're looking for?
+                    %s
+                    """, matchingTasks));
+        }
+    }
+
     public static class HelpMessage extends DisplayMessage {
         private HelpMessage() {
             super("""
-                    list        : displays the current list of tasks.
-                    mark <i>    : marks the <i>th task as done.
-                    unmark <i>  : marks the <i>th task as not done yet.
-                    delete <i>  : deletes the <i>th task.
                     todo <desc>
                                 : creates a new todo-type task with the
                                   description <desc>.
@@ -89,6 +94,11 @@ public class Ui {
                                 : creates a new event-type task with the
                                   description <desc>, that starts at <start>
                                   and ends at <end>.
+                    list        : displays the current list of tasks.
+                    find <key>  : lists tasks with descriptions containing <key>.
+                    mark <i>    : marks the <i>th task as done.
+                    unmark <i>  : marks the <i>th task as not done yet.
+                    delete <i>  : deletes the <i>th task.
                     help        : displays a valid list of commands and
                                   what they do.
                     """);
