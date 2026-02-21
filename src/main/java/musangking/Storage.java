@@ -1,4 +1,4 @@
-package MusangKing;
+package musangking;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

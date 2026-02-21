@@ -1,4 +1,4 @@
-package MusangKing;
+package musangking;
 
 public class MusangKingException extends RuntimeException {
     public MusangKingException(String message) {

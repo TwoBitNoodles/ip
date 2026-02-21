@@ -1,4 +1,4 @@
-package MusangKing;  //same package as the class being tested
+package musangking;  //same package as the class being tested
 
 import org.junit.jupiter.api.Test;
 
