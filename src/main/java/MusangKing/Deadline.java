@@ -1,8 +1,9 @@
 package MusangKing;
+import java.time.LocalDate;
 
 public class Deadline extends Task {
 
-    public final String by;
+    private final LocalDate by;
 
     /**
      * Public constructor initializes a MusangKing.Deadline task with a
@@ -10,9 +11,13 @@ public class Deadline extends Task {
      * @param desc : the task description.
      * @param by   : when the task is due.
      */
-    public Deadline(String desc, String by) {
+    public Deadline(String desc, LocalDate by) {
         this.desc = desc;
         this.by = by;
+    }
+
+    public String getBy() {
+        return this.by.toString();
     }
 
     /**

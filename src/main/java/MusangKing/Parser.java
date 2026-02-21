@@ -1,6 +1,9 @@
 package MusangKing;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class Parser {
@@ -156,12 +159,8 @@ public class Parser {
             );
         }
         String[] args = input.split(" /by "); // assume for now the input is valid
-
-        if (!isValidDate(args[1])) {
-            throw Exceptions.INVALID_DATE_FORMAT;
-        }//
-
-        Task newTask = new Deadline(args[0], args[1]);
+        LocalDate date = toLocalDate(args[1]);
+        Task newTask = new Deadline(args[0], date);
         return addTaskResponse(taskList, newTask);
     }
 
@@ -190,7 +189,9 @@ public class Parser {
             );
         }
         String[] args = input.split(" /from | /to ");
-        Task newTask = new Event(args[0], args[1], args[2]);
+        LocalDateTime startDateTime = toLocalDateTime(args[1]);
+        LocalDateTime endDateTime = toLocalDateTime(args[2]);
+        Task newTask = new Event(args[0], startDateTime, endDateTime);
         return addTaskResponse(taskList, newTask);
     }
 
@@ -234,23 +235,22 @@ public class Parser {
         }
     }
 
-    private boolean isValidDate(String date) {
-        if (date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
-            int year = Integer.parseInt(date.substring(0, 4));
-            int month = Integer.parseInt(date.substring(5, 7));
-            int day = Integer.parseInt(date.substring(8, 10));
-            if (year >= LocalDate.now().getYear()) {
-                if (month >= 1 && month <= 12) {
-                    if (List.of(1, 3, 5, 7, 8, 10, 12).contains(month)) {
-                        return day >= 1 && day <= 31;
-                    } else if (List.of(4, 6, 9, 11).contains(month)) {
-                        return day >= 1 && day <= 30;
-                    } else if (month == 2) {
-                        return day >= 1 && day <= 28;
-                    }
-                }
-            }
+    private LocalDate toLocalDate(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            return LocalDate.parse(dateString, formatter);
+        } catch (DateTimeParseException e) {
+            throw Exceptions.INVALID_DATE_FORMAT;
         }
-        return false;
+    }
+
+    private LocalDateTime toLocalDateTime(String datetimeString) {
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        try {
+            return LocalDateTime.parse(datetimeString, formatter);
+        } catch (DateTimeParseException e) {
+            throw Exceptions.INVALID_DATE_FORMAT;
+        }
     }
 }

@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -65,7 +67,7 @@ public class Storage {
                         tasklist.addTask(newTask);
                         break;
                     case "D":
-                        String by = task[3];
+                        LocalDate by = LocalDate.parse(task[3]);
                         newTask = new Deadline(desc, by);
                         if (isDone.equals("1")) {
                             newTask.markDone();
@@ -73,9 +75,9 @@ public class Storage {
                         tasklist.addTask(newTask);
                         break;
                     case "E":
-                        String start = task[3];
-                        String end = task[4];
-                        newTask = new Event(desc, start, end);
+                        LocalDateTime startDateTime = LocalDateTime.parse(task[3]);
+                        LocalDateTime endDateTime = LocalDateTime.parse(task[4]);
+                        newTask = new Event(desc, startDateTime, endDateTime);
                         if (isDone.equals("1")) {
                             newTask.markDone();
                         }
@@ -105,13 +107,13 @@ public class Storage {
                 tempFile.write(String.format("D | %d | %s | %s\n",
                         (deadline.isDone) ? 1 : 0,
                         deadline.desc,
-                        deadline.by));
+                        deadline.getBy()));
             } else if (task instanceof Event event) {
                 tempFile.write(String.format("E | %d | %s | %s | %s\n",
                         (event.isDone) ? 1 : 0,
                         event.desc,
-                        event.start,
-                        event.end));
+                        event.getStart(),
+                        event.getEnd()));
             }
         }
         tempFile.close();
