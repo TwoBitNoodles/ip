@@ -235,6 +235,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a valid String into a LocalDate object.
+     * @param dateString : the String representation of a date
+     * @return           : LocalDate object
+     */
     private LocalDate toLocalDate(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
@@ -244,6 +249,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a valid String into a LocalDate object.
+     * @param datetimeString : the String representation of a date and time
+     * @return               : LocalDateTime object
+     */
     private LocalDateTime toLocalDateTime(String datetimeString) {
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

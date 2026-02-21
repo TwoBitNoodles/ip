@@ -53,8 +53,9 @@ public class Exceptions {
     public static class InvalidDateFormatException extends MusangKingException {
         private InvalidDateFormatException() {
             super("""
-                    Do you not know how to write the date?
-                    I'll show you, you need to enter it as YYYY-MM-DD!
+                    Do you not know how to write the date? I'll show you:
+                    For deadlines, you need to enter it as YYYY-MM-DD.
+                    For events, you need to enter it as YYYY-MM-DD HH:MM.
                     And I only take REAL dates!
                     """);
         }
