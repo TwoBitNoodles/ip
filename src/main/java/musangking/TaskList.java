@@ -51,6 +51,11 @@ public class TaskList {
         return markedTask.toString();
     }
 
+    /**
+     * Deletes a task based on the given task number.
+     * @param taskNo : the index of the task to be deleted.
+     * @return       : the string representation of the task to be deleted.
+     */
     public String deleteTask(int taskNo) {
         Task deletedTask = this.tasks.get(taskNo-1);
         this.tasks.remove(taskNo-1);
@@ -58,6 +63,10 @@ public class TaskList {
         return deletedTask.toString();
     }
 
+    /**
+     * @param key : keyword to search for.
+     * @return    : the string representation of a list of matching tasks.
+     */
     public String findTask(String key) {
         TaskList matchingTasks = new TaskList();
         for (Task task : this.tasks) {
