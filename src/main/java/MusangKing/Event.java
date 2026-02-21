@@ -22,16 +22,22 @@ public class Event extends Task {
         this.end = end;
     }
 
+    /**
+     * @return : the string representation of when the event begins.
+     */
     public String getStart() {
         return this.start.format(this.formatter);
     }
 
+    /**
+     * @return : the string representation of when the event ends.
+     */
     public String getEnd() {
         return this.end.format(this.formatter);
     }
 
     /**
-     * @return the string representation of the task.
+     * @return : the string representation of the task.
      */
     @Override
     public String toString() {

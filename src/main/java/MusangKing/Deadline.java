@@ -16,12 +16,15 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * @return : string representation of when the deadline is due.
+     */
     public String getBy() {
         return this.by.toString();
     }
 
     /**
-     * @return The string representation of the task.
+     * @return : string representation of the task.
      */
     @Override
     public String toString() {
