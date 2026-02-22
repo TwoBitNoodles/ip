@@ -35,6 +35,7 @@ public class TaskList {
      * @return the string representation of the task after being marked done.
      */
     public String markTaskDone(int taskNo) {
+        assert (taskNo > 0 && taskNo <= this.count) : "taskNo should be valid";
         Task markedTask = this.tasks.get(taskNo-1);
         markedTask.markDone();
         return markedTask.toString();
@@ -46,6 +47,7 @@ public class TaskList {
      * @return the string representation of the task after being unmarked.
      */
     public String unmarkTaskDone(int taskNo) {
+        assert (taskNo > 0 && taskNo <= this.count) : "taskNo should be valid";
         Task markedTask = this.tasks.get(taskNo-1);
         markedTask.unmarkDone();
         return markedTask.toString();
@@ -57,6 +59,7 @@ public class TaskList {
      * @return       : the string representation of the task to be deleted.
      */
     public String deleteTask(int taskNo) {
+        assert (taskNo > 0 && taskNo <= this.count) : "taskNo should be valid";
         Task deletedTask = this.tasks.get(taskNo-1);
         this.tasks.remove(taskNo-1);
         this.count--;

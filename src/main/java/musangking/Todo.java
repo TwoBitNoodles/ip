@@ -8,6 +8,7 @@ public class Todo extends Task {
      */
     public Todo(String desc) {
         this.desc = desc;
+        assert !this.isDone : "tasks should be unmarked when initialised";
     }
 
     /**
