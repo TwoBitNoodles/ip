@@ -1,5 +1,7 @@
 package musangking;  //same package as the class being tested
 
+import musangking.gui.DisplayMessage;
+import musangking.gui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -34,17 +36,17 @@ public class ParserTest {
                     Another task? Okay fine, I'll add it:
                     [T][ ] desc
                     That makes a total of 1 tasks, you better finish them quickly!
-                    """, todoDm.msg);
+                    """, todoDm.toString());
         assertEquals("""
                     Another task? Okay fine, I'll add it:
                     [D][ ] desc (by: 2026-04-19)
                     That makes a total of 2 tasks, you better finish them quickly!
-                    """, deadlineDm.msg);
+                    """, deadlineDm.toString());
         assertEquals("""
                     Another task? Okay fine, I'll add it:
                     [E][ ] desc (from: 2026-04-19 14:00 to: 2026-04-19 18:00)
                     That makes a total of 3 tasks, you better finish them quickly!
-                    """, eventDm.msg);
+                    """, eventDm.toString());
     }
 
     @Test

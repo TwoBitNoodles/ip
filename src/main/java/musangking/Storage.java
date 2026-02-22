@@ -1,5 +1,7 @@
 package musangking;
 
+import musangking.gui.DisplayMessage;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;

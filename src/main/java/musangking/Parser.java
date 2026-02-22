@@ -1,5 +1,9 @@
 package musangking;
 
+import musangking.gui.DisplayMessage;
+import musangking.gui.MusangKing;
+import musangking.gui.Ui;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -58,7 +62,6 @@ public class Parser {
      * @return GOODBYE message.
      */
     private DisplayMessage byeResponse() {
-        MusangKing.flag = false;
         return Ui.GOODBYE;
     }
 
