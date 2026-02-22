@@ -8,6 +8,8 @@ import java.io.IOException;
 public class MusangKing {
 
     public static boolean flag = true;
+    protected TaskList tasklist = new TaskList();
+    protected Parser parser = new Parser();
 
     public static void main(String[] args) {
         /*
@@ -56,6 +58,11 @@ public class MusangKing {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        return "MusangKing heard: " + input;
+        try {
+            DisplayMessage msg = parser.parse(this.tasklist, input);
+            return msg.msg;
+        } catch (MusangKingException e) {
+            return e.getMessage();
+        }
     }
 }

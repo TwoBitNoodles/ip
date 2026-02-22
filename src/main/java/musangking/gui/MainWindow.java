@@ -1,5 +1,7 @@
 package musangking.gui;
 
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
 /**
  * Controller for the main GUI.
  */
@@ -31,8 +35,8 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Duke instance */
-    public void setDuke(MusangKing d) {
-        musangking = d;
+    public void setMusangKing(MusangKing mk) {
+        musangking = mk;
     }
 
     /**
@@ -40,7 +44,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws InterruptedException {
         String input = userInput.getText();
         String response = musangking.getResponse(input);
         dialogContainer.getChildren().addAll(
@@ -48,5 +52,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, musangkingImage)
         );
         userInput.clear();
+
+        if (response.equals(Ui.GOODBYE.toString())) {
+            PauseTransition pause = new PauseTransition(Duration.seconds(4));
+            pause.setOnFinished(event -> Platform.exit());
+            pause.play();
+        }
     }
 }

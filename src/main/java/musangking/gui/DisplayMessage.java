@@ -1,7 +1,7 @@
 package musangking.gui;
 
 public class DisplayMessage {
-    public final String msg;
+    protected final String msg;
 
     public DisplayMessage(String msg) {
         this.msg = msg;
@@ -13,7 +13,6 @@ public class DisplayMessage {
      */
     @Override
     public String toString() {
-        String line = "_".repeat(60) + "\n";
-        return (line + this.msg + line);
+        return this.msg;
     }
 }

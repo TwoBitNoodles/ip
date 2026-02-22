@@ -62,7 +62,6 @@ public class Parser {
      * @return GOODBYE message.
      */
     private DisplayMessage byeResponse() {
-        MusangKing.flag = false;
         return Ui.GOODBYE;
     }
 
