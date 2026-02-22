@@ -18,11 +18,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            // load gui
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setMusangKing(musangking);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setMusangKing(musangking);  // inject the MusangKing instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

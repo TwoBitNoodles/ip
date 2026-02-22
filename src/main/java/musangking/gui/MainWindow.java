@@ -34,26 +34,32 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
+    /** Injects the MusangKing instance */
     public void setMusangKing(MusangKing mk) {
         musangking = mk;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getMusangKingDialog(
+                        musangking.initialiseData(), musangkingImage),
+                DialogBox.getMusangKingDialog(
+                        Ui.GREETING.toString(), musangkingImage));
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing MusangKing's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws InterruptedException {
+    private void handleUserInput() {
         String input = userInput.getText();
         String response = musangking.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, musangkingImage)
+                DialogBox.getMusangKingDialog(response, musangkingImage)
         );
         userInput.clear();
 
         if (response.equals(Ui.GOODBYE.toString())) {
+            musangking.finaliseData();
             PauseTransition pause = new PauseTransition(Duration.seconds(4));
             pause.setOnFinished(event -> Platform.exit());
             pause.play();

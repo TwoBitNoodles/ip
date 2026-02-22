@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public class MusangKing {
 
-    public static boolean flag = true;
-    protected TaskList tasklist = new TaskList();
-    protected Parser parser = new Parser();
+    private TaskList tasklist = new TaskList();
+    private Parser parser = new Parser();
+
 
     public static void main(String[] args) {
         /*
@@ -37,20 +37,19 @@ public class MusangKing {
         Scanner sc = new Scanner(System.in);
         Parser parser = new Parser();
 
-        //
-        while (flag) {
-            try {
-                msg = parser.parse(taskList, sc.nextLine());
-                System.out.println(msg);
-            } catch (MusangKingException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
         try {
             Storage.updateFile(taskList);
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public String initialiseData() {
+        try {
+            DisplayMessage msg = Storage.initialiseFileManager(this.tasklist);
+            return msg.toString();
+        } catch (IOException e) {
+            return e.getMessage();
         }
     }
 
@@ -60,9 +59,17 @@ public class MusangKing {
     public String getResponse(String input) {
         try {
             DisplayMessage msg = parser.parse(this.tasklist, input);
-            return msg.msg;
+            return msg.toString();
         } catch (MusangKingException e) {
             return e.getMessage();
+        }
+    }
+
+    public void finaliseData() {
+        try {
+            Storage.updateFile(this.tasklist);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

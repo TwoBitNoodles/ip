@@ -1,7 +1,7 @@
 package musangking.gui;
 
 public class DisplayMessage {
-    protected final String msg;
+    private final String msg;
 
     public DisplayMessage(String msg) {
         this.msg = msg;
