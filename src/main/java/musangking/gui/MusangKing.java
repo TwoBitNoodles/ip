@@ -1,4 +1,6 @@
-package musangking;
+package musangking.gui;
+
+import musangking.*;
 
 import java.util.Scanner;
 import java.io.IOException;

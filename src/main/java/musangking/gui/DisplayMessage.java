@@ -1,4 +1,4 @@
-package musangking;
+package musangking.gui;
 
 public class DisplayMessage {
     protected final String msg;

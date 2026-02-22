@@ -1,5 +1,7 @@
 package musangking;  //same package as the class being tested
 
+import musangking.gui.DisplayMessage;
+import musangking.gui.Ui;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

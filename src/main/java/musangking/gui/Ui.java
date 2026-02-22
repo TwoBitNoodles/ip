@@ -1,4 +1,4 @@
-package musangking;
+package musangking.gui;
 
 public class Ui {
 

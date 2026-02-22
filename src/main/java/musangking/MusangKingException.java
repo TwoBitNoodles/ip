@@ -1,5 +1,7 @@
 package musangking;
 
+import musangking.gui.DisplayMessage;
+
 public class MusangKingException extends RuntimeException {
     public MusangKingException(String message) {
         super(message);
