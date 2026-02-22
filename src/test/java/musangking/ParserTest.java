@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParserTest {
 
     private final Parser parser = new Parser();
-    private final String line = "_".repeat(60) + "\n";
 
     @Test
     public void testParse_bye() {
@@ -63,9 +62,9 @@ public class ParserTest {
                 parser.parse(tasklist, input);
                 fail();
             } catch (Exception e) {
-                assertEquals(line + """
+                assertEquals("""
                         What? Please enter a valid task number!
-                        """ + line, e.getMessage());
+                        """, e.getMessage());
             }
         }
         for (String input : garbageInputs) {
@@ -73,9 +72,9 @@ public class ParserTest {
                 parser.parse(tasklist, input);
                 fail();
             } catch (Exception e) {
-                assertEquals(line + """
+                assertEquals("""
                         The task number is supposed to be an integer!
-                        """ + line, e.getMessage());
+                        """, e.getMessage());
             }
         }
     }
