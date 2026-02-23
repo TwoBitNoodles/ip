@@ -14,6 +14,7 @@ public class Deadline extends Task {
     public Deadline(String desc, LocalDate by) {
         this.desc = desc;
         this.by = by;
+        assert !this.isDone : "tasks should be unmarked when initialised";
     }
 
     /**

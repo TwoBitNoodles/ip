@@ -20,6 +20,7 @@ public class Event extends Task {
         this.desc = desc;
         this.start = start;
         this.end = end;
+        assert !this.isDone : "tasks should be unmarked when initialised";
     }
 
     /**
