@@ -2,13 +2,10 @@ package musangking;
 
 import musangking.gui.DisplayMessage;
 
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,73 +17,22 @@ public class Storage {
     private static final Path tempPath = Paths.get("data/temp.txt");
 
     public static DisplayMessage initialiseFileManager(TaskList tasklist) throws IOException {
-        // check if the directory exists
-        if (!Files.exists(dirPath)) {
-            Files.createDirectory(dirPath);
-        }
-
-        // check if the file exists
-        if (!Files.exists(filePath)) {
-            Files.createFile(filePath);
+        checkIfDirectoryExists();
+        if (!fileExists()) {
             return new DisplayMessage("""
                     New session in progress.
                     No save files were found.
                     Creating new save file...
                     """);
-
-        // check if the file is corrupted
-        } else if (!Files.isRegularFile(filePath) || !Files.isReadable(filePath)) {
-            Files.deleteIfExists(filePath);
-            Files.createFile(filePath);
+        } else if (fileIsCorrupted()) {
             return new DisplayMessage("""
                     New session in progress.
                     The save file from the previous session is corrupted.
                     Data from the previous session may be lost.
                     Creating new save file...
                     """);
-
-        // if the file exists and is not corrupted,
-        // initialize the tasklist accordingly
         } else {
-            BufferedReader br = new BufferedReader(new FileReader(filePath.toString()));
-            List<String[]> lines = new ArrayList<>();
-            String line;
-            while ((line = br.readLine()) != null) {
-                lines.add(line.split(" \\| "));
-            }
-            br.close();
-
-            for (String[] task : lines) {
-                String isDone = task[1];
-                String desc = task[2];
-                Task newTask;
-                switch (task[0]) {
-                    case "T":
-                        newTask = new Todo(desc);
-                        if (isDone.equals("1")) {
-                            newTask.markDone();
-                        }
-                        tasklist.addTask(newTask);
-                        break;
-                    case "D":
-                        LocalDate by = LocalDate.parse(task[3]);
-                        newTask = new Deadline(desc, by);
-                        if (isDone.equals("1")) {
-                            newTask.markDone();
-                        }
-                        tasklist.addTask(newTask);
-                        break;
-                    case "E":
-                        LocalDateTime startDateTime = LocalDateTime.parse(task[3]);
-                        LocalDateTime endDateTime = LocalDateTime.parse(task[4]);
-                        newTask = new Event(desc, startDateTime, endDateTime);
-                        if (isDone.equals("1")) {
-                            newTask.markDone();
-                        }
-                        tasklist.addTask(newTask);
-                        break;
-                }
-            }
+            initialiseTaskList(tasklist);
             return new DisplayMessage("""
                     New session in progress.
                     Recovering data from the previous session...
@@ -97,8 +43,82 @@ public class Storage {
     public static void updateFile(TaskList tasklist) throws IOException {
         Files.deleteIfExists(tempPath);
         Files.createFile(tempPath);
-        FileWriter tempFile = new FileWriter(tempPath.toString(), true);
+        writeData(tasklist);
+        Files.deleteIfExists(filePath);
+        Files.move(tempPath, filePath);
+    }
 
+    private static void checkIfDirectoryExists() throws IOException {
+        if (!Files.exists(dirPath)) {
+            Files.createDirectory(dirPath);
+        }
+    }
+
+    private static boolean fileExists() throws IOException {
+        if (!Files.exists(filePath)) {
+            Files.createFile(filePath);
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean fileIsCorrupted() throws IOException {
+        if (!Files.isRegularFile(filePath) || !Files.isReadable(filePath)) {
+            Files.deleteIfExists(filePath);
+            Files.createFile(filePath);
+            return false;
+        }
+        return true;
+    }
+
+    private static void initialiseTaskList(TaskList tasklist) throws IOException {
+        List<String[]> lines = readSaveData();
+        for (String[] task : lines) {
+            String isDone = task[1];
+            String desc = task[2];
+            Task newTask;
+            switch (task[0]) {
+                case "T":
+                    newTask = new Todo(desc);
+                    if (isDone.equals("1")) {
+                        newTask.markDone();
+                    }
+                    tasklist.addTask(newTask);
+                    break;
+                case "D":
+                    LocalDate by = LocalDate.parse(task[3]);
+                    newTask = new Deadline(desc, by);
+                    if (isDone.equals("1")) {
+                        newTask.markDone();
+                    }
+                    tasklist.addTask(newTask);
+                    break;
+                case "E":
+                    LocalDateTime startDateTime = LocalDateTime.parse(task[3]);
+                    LocalDateTime endDateTime = LocalDateTime.parse(task[4]);
+                    newTask = new Event(desc, startDateTime, endDateTime);
+                    if (isDone.equals("1")) {
+                        newTask.markDone();
+                    }
+                    tasklist.addTask(newTask);
+                    break;
+            }
+        }
+    }
+
+    private static List<String[]> readSaveData() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(filePath.toString()));
+        List<String[]> lines = new ArrayList<>();
+        String line;
+        while ((line = br.readLine()) != null) {
+            lines.add(line.split(" \\| "));
+        }
+        br.close();
+        return lines;
+    }
+
+    private static void writeData(TaskList tasklist) throws IOException {
+        FileWriter tempFile = new FileWriter(tempPath.toString(), true);
         for (int i = 0; i < tasklist.count; i++) {
             Task task = tasklist.getTask(i);
             if (task instanceof Todo todo) {
@@ -119,8 +139,5 @@ public class Storage {
             }
         }
         tempFile.close();
-
-        Files.deleteIfExists(filePath);
-        Files.move(tempPath, filePath);
     }
 }
