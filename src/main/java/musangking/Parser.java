@@ -75,6 +75,7 @@ public class Parser {
     private DisplayMessage findResponse(TaskList taskList, String key) {
         return new Ui.FindTaskMessage(taskList.findTask(key));
     }
+
     /**
      * Marks the given task as done.
      * @param input : the task to be marked.

@@ -23,9 +23,9 @@ public class EventTest {
                 LocalDateTime.parse("2026-04-19T14:00"),
                 LocalDateTime.parse("2026-04-19T18:00"));
         event.markDone();
-        assertTrue(event.isDone);
+        assertTrue(event.isDone());
         event.unmarkDone();
-        assertFalse(event.isDone);
+        assertFalse(event.isDone());
     }
 
     @Test

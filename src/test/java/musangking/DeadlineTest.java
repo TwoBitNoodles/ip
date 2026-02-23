@@ -20,9 +20,9 @@ public class DeadlineTest {
         Deadline deadline =new Deadline("desc",
                 LocalDate.parse("2026-04-19"));
         deadline.markDone();
-        assertTrue(deadline.isDone);
+        assertTrue(deadline.isDone());
         deadline.unmarkDone();
-        assertFalse(deadline.isDone);
+        assertFalse(deadline.isDone());
     }
 
     @Test

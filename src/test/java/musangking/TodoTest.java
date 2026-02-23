@@ -10,9 +10,9 @@ public class TodoTest {
     public void testMarkAndUnmarkDone() {
         Todo todo = new Todo("desc");
         todo.markDone();
-        assertTrue(todo.isDone);
+        assertTrue(todo.isDone());
         todo.unmarkDone();
-        assertFalse(todo.isDone);
+        assertFalse(todo.isDone());
     }
 
     @Test

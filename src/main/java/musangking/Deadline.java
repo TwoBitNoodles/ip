@@ -3,7 +3,7 @@ import java.time.LocalDate;
 
 public class Deadline extends Task {
 
-    private final LocalDate by;
+    private LocalDate by;
 
     /**
      * Public constructor initializes a MusangKing.Deadline task with a
@@ -12,9 +12,9 @@ public class Deadline extends Task {
      * @param by   : when the task is due.
      */
     public Deadline(String desc, LocalDate by) {
-        this.desc = desc;
+        this.setDesc(desc);
         this.by = by;
-        assert !this.isDone : "tasks should be unmarked when initialised";
+        assert !this.isDone() : "tasks should be unmarked when initialised";
     }
 
     /**
@@ -25,13 +25,21 @@ public class Deadline extends Task {
     }
 
     /**
+     * Modifies when the deadline is due.
+     * @param by : new due date.
+     */
+    public void setBy(LocalDate by) {
+        this.by = by;
+    }
+
+    /**
      * @return : string representation of the task.
      */
     @Override
     public String toString() {
         return String.format("[D][%s] %s (by: %s)",
-                (this.isDone) ? "X" : " ",
-                this.desc,
+                (this.isDone()) ? "X" : " ",
+                this.getDesc(),
                 this.by);
     }
 }

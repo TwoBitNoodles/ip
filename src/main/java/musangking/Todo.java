@@ -7,8 +7,8 @@ public class Todo extends Task {
      * @param desc : the task description.
      */
     public Todo(String desc) {
-        this.desc = desc;
-        assert !this.isDone : "tasks should be unmarked when initialised";
+        this.setDesc(desc);
+        assert !this.isDone() : "tasks should be unmarked when initialised";
     }
 
     /**
@@ -17,7 +17,7 @@ public class Todo extends Task {
     @Override
     public String toString() {
         return String.format("[T][%s] %s",
-                (this.isDone) ? "X" : " ",
-                this.desc);
+                (this.isDone()) ? "X" : " ",
+                this.getDesc());
     }
 }

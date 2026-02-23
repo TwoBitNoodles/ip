@@ -73,7 +73,7 @@ public class TaskList {
     public String findTask(String key) {
         TaskList matchingTasks = new TaskList();
         for (Task task : this.tasks) {
-            if (task.desc.contains(key)) {
+            if (task.getDesc().contains(key)) {
                 matchingTasks.addTask(task);
             }
         }

@@ -107,17 +107,17 @@ public class Storage {
             Task task = tasklist.getTask(i);
             if (task instanceof Todo todo) {
                 tempFile.write(String.format("T | %d | %s\n",
-                        (todo.isDone) ? 1 : 0,
-                        todo.desc));
+                        (todo.isDone()) ? 1 : 0,
+                        todo.getDesc()));
             } else if (task instanceof Deadline deadline) {
                 tempFile.write(String.format("D | %d | %s | %s\n",
-                        (deadline.isDone) ? 1 : 0,
-                        deadline.desc,
+                        (deadline.isDone()) ? 1 : 0,
+                        deadline.getDesc(),
                         deadline.getBy()));
             } else if (task instanceof Event event) {
                 tempFile.write(String.format("E | %d | %s | %s | %s\n",
-                        (event.isDone) ? 1 : 0,
-                        event.desc,
+                        (event.isDone()) ? 1 : 0,
+                        event.getDesc(),
                         event.getStart(),
                         event.getEnd()));
             }
