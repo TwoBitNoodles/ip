@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 
 /**
@@ -20,6 +20,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private VBox dialogContainer;
     @FXML
+    private ImageView displayBackground;
+    @FXML
     private TextField userInput;
     @FXML
     private Button sendButton;
@@ -28,10 +30,12 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image musangkingImage = new Image(this.getClass().getResourceAsStream("/images/musangking.png"));
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/background.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        displayBackground.setImage(backgroundImage);
     }
 
     /** Injects the MusangKing instance */
