@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -55,52 +57,34 @@ public class Storage {
     }
 
     private static boolean fileExists() throws IOException {
-        if (!Files.exists(filePath)) {
-            Files.createFile(filePath);
-            return false;
+        if (Files.exists(filePath)) {
+            return true;
         }
-        return true;
+        Files.createFile(filePath);
+        return false;
     }
 
     private static boolean fileIsCorrupted() throws IOException {
-        if (!Files.isRegularFile(filePath) || !Files.isReadable(filePath)) {
-            Files.deleteIfExists(filePath);
-            Files.createFile(filePath);
+        if (Files.isRegularFile(filePath) || Files.isReadable(filePath)) {
             return false;
         }
+        Files.deleteIfExists(filePath);
+        Files.createFile(filePath);
         return true;
     }
 
     private static void initialiseTaskList(TaskList tasklist) throws IOException {
         List<String[]> lines = readSaveData();
         for (String[] task : lines) {
-            String isDone = task[1];
-            String desc = task[2];
-            Task newTask;
             switch (task[0]) {
                 case "T":
-                    newTask = new Todo(desc);
-                    if (isDone.equals("1")) {
-                        newTask.markDone();
-                    }
-                    tasklist.addTask(newTask);
+                    addTodoTask(task, tasklist);
                     break;
                 case "D":
-                    LocalDate by = LocalDate.parse(task[3]);
-                    newTask = new Deadline(desc, by);
-                    if (isDone.equals("1")) {
-                        newTask.markDone();
-                    }
-                    tasklist.addTask(newTask);
+                    addDeadlineTask(task, tasklist);
                     break;
                 case "E":
-                    LocalDateTime startDateTime = LocalDateTime.parse(task[3]);
-                    LocalDateTime endDateTime = LocalDateTime.parse(task[4]);
-                    newTask = new Event(desc, startDateTime, endDateTime);
-                    if (isDone.equals("1")) {
-                        newTask.markDone();
-                    }
-                    tasklist.addTask(newTask);
+                    addEventTask(task, tasklist);
                     break;
             }
         }
@@ -139,5 +123,62 @@ public class Storage {
             }
         }
         tempFile.close();
+    }
+
+    private static void addTodoTask(String[] task, TaskList tasklist) {
+        String isDone = task[1], desc = task[2];
+        Todo todo = new Todo(desc);
+        markTaskIfDone(todo, isDone);
+        tasklist.addTask(todo);
+    }
+
+    private static void addDeadlineTask(String[] task, TaskList tasklist) {
+        assert isValidDateString(task[3]) : "the date should be in valid format";
+        String isDone = task[1], desc = task[2];
+        LocalDate by = LocalDate.parse(task[3]);
+        Deadline deadline = new Deadline(desc, by);
+        markTaskIfDone(deadline, isDone);
+        tasklist.addTask(deadline);
+    }
+
+    private static void addEventTask(String[] task, TaskList tasklist) {
+        assert isValidDateTimeString(task[3]) : "the datetime should be in valid format";
+        assert isValidDateTimeString(task[4]) : "the datetime should be in valid format";
+        String isDone = task[1], desc = task[2];
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime start = LocalDateTime.parse(task[3], formatter),
+                end = LocalDateTime.parse(task[4], formatter);
+        Event event = new Event(desc, start, end);
+        markTaskIfDone(event, isDone);
+        tasklist.addTask(event);
+    }
+
+    private static void markTaskIfDone(Task task, String isDone) {
+        if (isDone.equals("1")) {
+            task.markDone();
+        }
+    }
+
+    private static boolean isValidDateString(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(input, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    private static boolean isValidDateTimeString(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("yyyy-MM-dd HH:mm");
+        try {
+            LocalDateTime.parse(input, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 }
