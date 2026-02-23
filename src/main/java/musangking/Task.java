@@ -2,8 +2,16 @@ package musangking;
 
 public abstract class Task {
 
-    protected String desc;
-    protected boolean isDone = false;
+    private String desc;
+    private boolean isDone = false;
+
+    public String getDesc() {
+        return this.desc;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
 
     /**
      * Mark the task as done.
@@ -17,6 +25,14 @@ public abstract class Task {
      */
     public void unmarkDone() {
         this.isDone = false;
+    }
+
+    /**
+     * Set the task description.
+     * @param desc : the task description.
+     */
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     @Override

@@ -62,12 +62,21 @@ public class Exceptions {
         }
     }
 
-    public static class IllegalArgumentException extends MusangKingException {
+    private static class IllegalArgumentException extends MusangKingException {
         private IllegalArgumentException() {
             super("""
                     You little... I see what you're trying to do!
-                    Don't test me!
+                    Can't you enter the correct number of arguments?
+                    And in the right order, please. Don't try to test me!
                     """);
+        }
+    }
+
+    public static class InvalidTaskFieldException extends MusangKingException {
+        public InvalidTaskFieldException(String taskType, String field) {
+            super(String.format("""
+                    %s tasks don't have a %s field!
+                    """, taskType, field));
         }
     }
 }

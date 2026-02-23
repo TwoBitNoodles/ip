@@ -45,6 +45,9 @@ public class Parser {
         } else if (input.toLowerCase().matches("^event\\b.*$")) {
             return createEvent(taskList, input.substring(5).strip());
 
+        } else if (input.toLowerCase().matches("^edit\\b.*$")) {
+            return updateTaskResponse(taskList, input.substring(4).strip());
+
         } else if ((input.toLowerCase().matches("^delete\\b.*$"))) {
             return deleteTaskResponse(taskList, input.substring(6).strip());
 
@@ -75,6 +78,7 @@ public class Parser {
     private DisplayMessage findResponse(TaskList taskList, String key) {
         return new Ui.FindTaskMessage(taskList.findTask(key));
     }
+
     /**
      * Marks the given task as done.
      * @param input : the task to be marked.
@@ -164,7 +168,7 @@ public class Parser {
                     "when your task is due",
                     "add your deadline task to the list"
             );
-        } else if (noOfArgsIsInvalid(input, new String[]{"/by"})) {
+        } else if (noOfArgsIsInvalid(input, "/by")) {
             throw Exceptions.ILLEGAL_ARGUMENT;
         }
         String[] args = input.split(" /by "); // assume for now the input is valid
@@ -246,6 +250,91 @@ public class Parser {
         }
     }
 
+    private DisplayMessage updateTaskResponse(TaskList taskList, String input) {
+        if (input.isEmpty()) {
+            throw new Exceptions.MissingFieldException(
+                    "the task you want to update",
+                    "update it"
+            );
+        } else if (!input.contains(" /change ")) {
+            throw new Exceptions.MissingFieldException(
+                    "the changes you want make",
+                    "edit the task"
+            );
+        } else if (noOfArgsIsInvalid(input, "/change") || !input.matches(
+                "^(\\w+)\\s+(\\w+)\\s+/change\\s+(\\S(?:.*\\S)?)$")) {
+            throw Exceptions.ILLEGAL_ARGUMENT;
+        }
+        String[] temp = input.split(" /change ");
+        String[] temp1 = temp[0].split(" ");
+        int idx;
+        try {
+            idx = Integer.parseInt(temp1[0]);
+            if (idx <= 0 || idx > taskList.count) {
+                throw Exceptions.TASK_OUT_OF_BOUNDS;
+            }
+        } catch (NumberFormatException e) {
+            throw new Exceptions.InvalidInputException("task number", "integer");
+        }
+        String field = temp1[1], change = temp[1];
+        Task task = taskList.getTask(idx-1);
+
+        if (task instanceof Todo) {
+            this.updateTodo(taskList, idx, field, change);
+        }
+        if (task instanceof Deadline) {
+            this.updateDeadline(taskList, idx, field, change);
+        }
+        if (task instanceof Event) {
+            this.updateEvent(taskList, idx, field, change);
+        }
+
+        return new Ui.UpdateTaskMessage(task.toString());
+    }
+
+    private void updateTodo
+            (TaskList taskList, int idx, String field, String change) {
+        if (field.equals("desc")) {
+            taskList.updateTaskDesc(idx, change);
+        } else {
+            throw new Exceptions.InvalidTaskFieldException("Todo", field);
+        }
+    }
+
+    private void updateDeadline
+            (TaskList taskList, int idx, String field, String change) {
+        switch (field) {
+            case "desc":
+                taskList.updateTaskDesc(idx, change);
+                break;
+            case "by":
+                LocalDate byDate = toLocalDate(change);
+                taskList.updateDeadlineBy(idx, byDate);
+                break;
+            default:
+                throw new Exceptions.InvalidTaskFieldException("Deadline", field);
+        }
+    }
+
+    private void updateEvent
+            (TaskList taskList, int idx, String field, String change) {
+        switch (field) {
+            case "desc":
+                taskList.updateTaskDesc(idx, change);
+                break;
+            case "start":
+                LocalDateTime startDateTime = toLocalDateTime(change);
+                taskList.updateEventStart(idx, startDateTime);
+                break;
+            case "end":
+                LocalDateTime endDateTime = toLocalDateTime(change);
+                taskList.updateEventEnd(idx, endDateTime);
+                break;
+            default:
+                throw new Exceptions.InvalidTaskFieldException("Event", field);
+        }
+    }
+
     private boolean noOfArgsIsInvalid(String input, String[] args) {
         String[] inputArr = input.split(" ");
         for (String arg : args) {
@@ -260,6 +349,21 @@ public class Parser {
             }
             assert count != 0 : "count should not be 0";
         }
+        return false;
+    }
+
+    private boolean noOfArgsIsInvalid(String input, String arg) {
+        String[] inputArr = input.split(" ");
+        int count = 0;
+        for (String word : inputArr) {
+            if (word.equals(arg)) {
+                count++;
+            }
+            if (count > 1) {
+                return true;
+            }
+        }
+        assert count != 0 : "count should not be 0";
         return false;
     }
 

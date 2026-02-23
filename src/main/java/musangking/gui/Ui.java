@@ -62,6 +62,16 @@ public class Ui {
         }
     }
 
+    public static class UpdateTaskMessage extends DisplayMessage {
+        public UpdateTaskMessage(String task) {
+            super(String.format("""
+                    What do you need to change this task for?
+                    Tsk... so troublesome... here is the updated task:
+                    %s
+                    """, task));
+        }
+    }
+
     public static class DeleteTaskMessage extends DisplayMessage {
         public DeleteTaskMessage(String task, int count) {
             super(String.format("""

@@ -4,8 +4,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
-    private final LocalDateTime start;
-    private final LocalDateTime end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private final DateTimeFormatter formatter
             = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -17,10 +17,10 @@ public class Event extends Task {
      * @param end   : when the task ends
      */
     public Event(String desc, LocalDateTime start, LocalDateTime end) {
-        this.desc = desc;
+        this.setDesc(desc);
         this.start = start;
         this.end = end;
-        assert !this.isDone : "tasks should be unmarked when initialised";
+        assert !this.isDone() : "tasks should be unmarked when initialised";
     }
 
     /**
@@ -38,13 +38,29 @@ public class Event extends Task {
     }
 
     /**
+     * Modifies when the event begins.
+     * @param start : new starting date time.
+     */
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    /**
+     * Modifies when the event ends.
+     * @param end : the new ending date time.
+     */
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    /**
      * @return : the string representation of the task.
      */
     @Override
     public String toString() {
         return String.format("[E][%s] %s (from: %s to: %s)",
-                (this.isDone) ? "X" : " ",
-                this.desc,
+                (this.isDone()) ? "X" : " ",
+                this.getDesc(),
                 this.getStart(),
                 this.getEnd());
     }
