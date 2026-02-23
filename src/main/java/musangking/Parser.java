@@ -1,7 +1,6 @@
 package musangking;
 
 import musangking.gui.DisplayMessage;
-import musangking.gui.MusangKing;
 import musangking.gui.Ui;
 
 import java.time.LocalDate;
@@ -165,6 +164,8 @@ public class Parser {
                     "when your task is due",
                     "add your deadline task to the list"
             );
+        } else if (noOfArgsIsInvalid(input, new String[]{"/by"})) {
+            throw Exceptions.ILLEGAL_ARGUMENT;
         }
         String[] args = input.split(" /by "); // assume for now the input is valid
         LocalDate date = toLocalDate(args[1]);
@@ -195,6 +196,8 @@ public class Parser {
                     "when your task ends",
                     "add your event task to the list"
             );
+        } else if (noOfArgsIsInvalid(input, new String[]{"/from", "/to"})) {
+            throw Exceptions.ILLEGAL_ARGUMENT;
         }
         String[] args = input.split(" /from | /to ");
         LocalDateTime startDateTime = toLocalDateTime(args[1]);
@@ -241,6 +244,23 @@ public class Parser {
                     "an integer"
             );
         }
+    }
+
+    private boolean noOfArgsIsInvalid(String input, String[] args) {
+        String[] inputArr = input.split(" ");
+        for (String arg : args) {
+            int count = 0;
+            for (String word : inputArr) {
+                if (word.equals(arg)) {
+                    count++;
+                }
+                if (count > 1) {
+                    return true;
+                }
+            }
+            assert count != 0 : "count should not be 0";
+        }
+        return false;
     }
 
     /**

@@ -6,6 +6,7 @@ public class Exceptions {
     public static final MusangKingException TASK_OUT_OF_BOUNDS = new TaskOutOfBoundsException();
     public static final MusangKingException DATA_CORRUPTION = new DataCorruptionException();
     public static final MusangKingException INVALID_DATE_FORMAT = new InvalidDateFormatException();
+    public static final MusangKingException ILLEGAL_ARGUMENT = new IllegalArgumentException();
 
     public static class InvalidCommandException extends MusangKingException {
         private InvalidCommandException() {
@@ -57,6 +58,15 @@ public class Exceptions {
                     For deadlines, you need to enter it as YYYY-MM-DD.
                     For events, you need to enter it as YYYY-MM-DD HH:MM.
                     And I only take REAL dates!
+                    """);
+        }
+    }
+
+    public static class IllegalArgumentException extends MusangKingException {
+        private IllegalArgumentException() {
+            super("""
+                    You little... I see what you're trying to do!
+                    Don't test me!
                     """);
         }
     }
