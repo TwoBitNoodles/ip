@@ -1,5 +1,7 @@
 package musangking;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -78,6 +80,51 @@ public class TaskList {
             }
         }
         return matchingTasks.toString();
+    }
+
+    /**
+     * Modifies the task description of a given task.
+     * @param idx  : the index of the task to be updated.
+     * @param desc : the new task description.
+     */
+    public void updateTaskDesc(int idx, String desc) {
+        this.getTask(idx-1).setDesc(desc);
+    }
+
+    /**
+     * Modifies the due date of a deadline task.
+     * @param idx : the index of the task to be updated.
+     * @param by  : the new due date.
+     */
+    public void updateDeadlineBy(int idx, LocalDate by) {
+        assert this.getTask(idx-1) instanceof Deadline
+                : "the task to be updated should be a deadline task";
+        Deadline deadline = (Deadline) this.getTask(idx-1);
+        deadline.setBy(by);
+    }
+
+    /**
+     * Modifies the starting datetime of an event task.
+     * @param idx   : the index of the task to be updated.
+     * @param start : the new starting datetime.
+     */
+    public void updateEventStart(int idx, LocalDateTime start) {
+        assert this.getTask(idx-1) instanceof Event
+                : "the task to be updated should be a deadline task";
+        Event event =  (Event) this.getTask(idx-1);
+        event.setStart(start);
+    }
+
+    /**
+     * Modifies the ending datetime of an event task.
+     * @param idx : the index of the task to be updated.
+     * @param end : the new ending datetime.
+     */
+    public void updateEventEnd(int idx, LocalDateTime end) {
+        assert this.getTask(idx-1) instanceof Event
+                : "the task to be updated should be a deadline task";
+        Event event =  (Event) this.getTask(idx-1);
+        event.setEnd(end);
     }
 
     /**
