@@ -1,16 +1,13 @@
 .label {
     -fx-background-color: -sub-accent-color;
     -fx-font: 12px "Noto Sans";
-    -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
-    -fx-border-radius: 1em 1em 0 1em;
     -fx-text-fill: -dark-text-color;
 }
 
 .reply-label {
     -fx-background-color: -main-color;
     -fx-background-radius: 1em 1em 1em 0;
-    -fx-border-radius: 1em 1em 1em 0;
     -fx-text-fill: -light-text-color;
 }
 

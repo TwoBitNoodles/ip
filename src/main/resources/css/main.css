@@ -4,10 +4,12 @@
     -sub-color: rgb(118, 62, 110);
     -accent-color: rgb(240, 195, 64);
     -sub-accent-color: rgb(252, 226, 173);
-    -light-text-color: rgb(243, 235, 245);
+    -light-text-color: rgb(244, 239, 242);
     -faded-text-color: rgb(163, 139, 160);
     -dark-text-color: rgb(69, 27, 73);
-    -fx-background-color: -main-color;
+    /*-bg-color: #896D31;*/
+    -bg-color: #8d5d00;
+    -fx-background-color: -dark-text-color;
 }
 
 .app-bar {
@@ -22,6 +24,7 @@
 
 .text-field {
     -fx-background-color: -sub-color;
+    -fx-background-radius: 1em 1em 1em 1em;
     -fx-font: 14px "Noto Sans";
     -fx-text-fill: -light-text-color;
     -fx-prompt-text-fill: -faded-text-color;
@@ -29,20 +32,21 @@
 
 .button {
     -fx-background-color: -accent-color;
-    -fx-font: italic bold 16px "Noto Sans";
+    -fx-background-radius: 10em 10em 10em 10em;
+    -fx-font: 26px "Noto Sans";
     -fx-text-fill: -dark-text-color;
 }
 
 .button:hover {
     -fx-background-color: -main-color;
     -fx-text-fill: -light-text-color;
-    -fx-font-size: 18px;
+    -fx-font-size: 28px;
 }
 
 .button:pressed {
     -fx-background-color: -sub-color;
     -fx-text-fill: -faded-text-color;
-    -fx-font-size: 20px;
+    -fx-font-size: 28px;
 }
 
 .scroll-pane,

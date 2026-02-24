@@ -11,15 +11,16 @@
     <children>
 
         <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true">
-         <HBox.margin>
-            <Insets left="7.0" right="7.0" />
-         </HBox.margin>
+             <HBox.margin>
+                <Insets left="7.0" right="7.0" />
+             </HBox.margin>
 
-         <padding>
-            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
-         </padding></Label>
+             <padding>
+                <Insets bottom="6.0" left="8.0" right="6.0" top="8.0" />
+             </padding>
+        </Label>
 
-        <StackPane styleClass="circular-pfp">
+        <StackPane styleClass="circular-pfp" alignment="TOP_RIGHT" maxHeight="86" maxWidth="86">
             <ImageView fx:id="displayPicture" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" >
                 <clip>
                     <Circle centerX="40" centerY="40" radius="40" />
