@@ -1,46 +1,47 @@
 .root {
     /*main-color: rgb(243, 170, 118);*/
-    main-color: rgb(147, 92, 129);
-    sub-color: rgb(118, 62, 110);
-    accent-color: rgb(240, 195, 64);
-    light-text-color: rgb(243, 235, 245);
-    faded-text-color: rgb(163, 139, 160);
-    dark-text-color: rgb(69, 27, 73);
-    -fx-background-color: main-color;
+    -main-color: rgb(147, 92, 129);
+    -sub-color: rgb(118, 62, 110);
+    -accent-color: rgb(240, 195, 64);
+    -sub-accent-color: rgb(252, 226, 173);
+    -light-text-color: rgb(243, 235, 245);
+    -faded-text-color: rgb(163, 139, 160);
+    -dark-text-color: rgb(69, 27, 73);
+    -fx-background-color: -main-color;
 }
 
 .app-bar {
-    -fx-background-color: sub-color;
+    -fx-background-color: -sub-color;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0.5, 2);
 }
 
 .app-title {
-    -fx-text-fill: light-text-color;
+    -fx-text-fill: -light-text-color;
     -fx-font: 28px "Noto Sans";
 }
 
 .text-field {
-    -fx-background-color: sub-color;
+    -fx-background-color: -sub-color;
     -fx-font: 14px "Noto Sans";
-    -fx-text-fill: light-text-color;
-    -fx-prompt-text-fill: faded-text-color;
+    -fx-text-fill: -light-text-color;
+    -fx-prompt-text-fill: -faded-text-color;
 }
 
 .button {
-    -fx-background-color: accent-color;
+    -fx-background-color: -accent-color;
     -fx-font: italic bold 16px "Noto Sans";
-    -fx-text-fill: dark-text-color;
+    -fx-text-fill: -dark-text-color;
 }
 
 .button:hover {
-    -fx-background-color: main-color;
-    -fx-text-fill: light-text-color;
+    -fx-background-color: -main-color;
+    -fx-text-fill: -light-text-color;
     -fx-font-size: 18px;
 }
 
 .button:pressed {
-    -fx-background-color: sub-color;
-    -fx-text-fill: faded-text-color;
+    -fx-background-color: -sub-color;
+    -fx-text-fill: -faded-text-color;
     -fx-font-size: 20px;
 }
 
@@ -55,7 +56,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: sub-color;
+    -fx-background-color: -sub-color;
     -fx-background-radius: 1em;
 }
 
@@ -67,7 +68,7 @@
 }
 
 #displayBackground {
-    -fx-opacity: 0.5;
+    -fx-opacity: 0.35;
 
     /* Change size of image. */
     -fx-scale-x: 1;

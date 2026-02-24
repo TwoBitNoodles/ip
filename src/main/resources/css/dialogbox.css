@@ -1,16 +1,17 @@
 .label {
-    -fx-background-color: linear-gradient(to bottom right, #00ffbf, #00ddff);
+    -fx-background-color: -sub-accent-color;
     -fx-font: 12px "Noto Sans";
-    -fx-border-color: #d55e00 #009e73 #cc79a7 #0072b2;
     -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
-    -fx-text-fill: ladder(background, white 49%, black 50%);
+    -fx-text-fill: -dark-text-color;
 }
 
 .reply-label {
+    -fx-background-color: -main-color;
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+    -fx-text-fill: -light-text-color;
 }
 
 #displayPicture {
