@@ -12,30 +12,31 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musangking.gui.MainWindow">
     <children>
+
         <ImageView fx:id="displayBackground" fitHeight="600.0" fitWidth="400.0" pickOnBounds="true" />
-      <BorderPane prefHeight="600.0" prefWidth="400.0">
-         <top>
-            <HBox styleClass="app-bar" alignment="CENTER" prefHeight="55.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label styleClass="app-title" alignment="CENTER" contentDisplay="CENTER" text="MusangKing" textAlignment="CENTER" />
-               </children>
-            </HBox>
-         </top>
-         <center>
-              <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0" BorderPane.alignment="CENTER">
-                  <content>
-                      <VBox fx:id="dialogContainer" prefHeight="499.0" prefWidth="383.0" />
-                  </content>
-              </ScrollPane>
-         </center>
-         <bottom>
-            <HBox prefHeight="48.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-               <children>
-                    <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Message"/>
-                    <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" />
-               </children>
-            </HBox>
-         </bottom>
-      </BorderPane>
+        <BorderPane prefHeight="600.0" prefWidth="400.0">
+            <top>
+                <HBox styleClass="app-bar" alignment="CENTER" prefHeight="55.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                   <children>
+                      <Label styleClass="app-title" alignment="CENTER" contentDisplay="CENTER" text="MusangKing" textAlignment="CENTER" />
+                   </children>
+                </HBox>
+            </top>
+            <center>
+                  <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0" BorderPane.alignment="CENTER">
+                      <content>
+                          <VBox fx:id="dialogContainer" prefHeight="499.0" prefWidth="383.0" />
+                      </content>
+                  </ScrollPane>
+            </center>
+            <bottom>
+                <HBox prefHeight="48.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                   <children>
+                        <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Message"/>
+                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="Send" />
+                   </children>
+                </HBox>
+            </bottom>
+        </BorderPane>
     </children>
 </AnchorPane>

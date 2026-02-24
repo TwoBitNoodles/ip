@@ -14,6 +14,15 @@
     -fx-text-fill: -light-text-color;
 }
 
+.circular-pfp {
+    -fx-padding: -2; /* space for border */
+    -fx-background-color: transparent;
+    -fx-border-color: -sub-color;
+    -fx-border-width: 4;
+    -fx-border-radius: 40; /* half of image size */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0.5, 0, 5);
+}
+
 #displayPicture {
     /* Shadow effect on image. */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);

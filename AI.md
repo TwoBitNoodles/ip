@@ -4,6 +4,7 @@ More specifically, I used it to learn how to;
 This was quite helpful, paired with closely referencing the javafx tutorial on how images were set in the
 DialogBox.
 - how and where to use globally defined colors in stylesheets.
+- render a circular ImageView using css and fxml.
 
 Use of AI for non-programming related purposes:
 - Fotor AI was used to extend the image set as the GUI's background.
