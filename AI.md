@@ -6,5 +6,5 @@ DialogBox.
 - how and where to use globally defined colors in stylesheets.
 - render a circular ImageView using css and fxml.
 
-Use of AI for non-programming related purposes:
-- Fotor AI was used to extend the image set as the GUI's background.
+ChatGPT was also used to:
+- come up with an appealing product intro, with reference to the help message I created myself.

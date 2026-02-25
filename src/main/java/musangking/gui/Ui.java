@@ -89,37 +89,38 @@ public class Ui {
     public static class HelpMessage extends DisplayMessage {
         private HelpMessage() {
             super("todo <desc>:\n" +
-                  "creates a new todo-type task with the description <desc>.\n" +
-                  "\n" +
-                  "deadline <desc> /by <by>:\n" +
-                  "creates a new deadline-type with the" +
-                  "description <desc>, due by <by>.\n" +
-                  "\n" +
-                  "event <desc> /from <start> /to <end>:\n" +
-                  "creates a new event-type task with the" +
-                  "description <desc>, that starts at <start>" +
-                  "and ends at <end>.\n" +
-                  "\n" +
-                  "edit <i> <field> /change <change>:\n" +
-                  "update the <field> field of the <i>th task with <change>.\n" +
-                  "\n" +
-                  "list:\n" +
-                  "displays the current list of tasks.\n" +
-                  "\n" +
-                  "find <key>:\n" +
-                  "lists tasks with descriptions containing <key>.\n" +
-                  "\n" +
-                  "mark <i>:\n" +
-                  "marks the <i>th task as done.\n" +
-                  "\n" +
-                  "unmark <i>:\n" +
-                  "marks the <i>th task as not done yet.\n" +
-                  "\n" +
-                  "delete <i>:\n" +
-                  "deletes the <i>th task.\n" +
-                  "\n" +
-                  "help:\n" +
-                  "displays a valid list of commands and what they do.");
+                    "creates a new todo-type task with the description <desc>.\n" +
+                    "\n" +
+                    "deadline <desc> /by <by>:\n" +
+                    "creates a new deadline-type task with the " +
+                    "description <desc>, due by <by>. <by> must be in the following format: YYYY-MM-DD\n" +
+                    "\n" +
+                    "event <desc> /from <start> /to <end>:\n" +
+                    "creates a new event-type task with the " +
+                    "description <desc>, that starts at <start> " +
+                    "and ends at <end>. <start> and <end> must be in " +
+                    "the following format: YYYY-MM-DD HH:MM\n" +
+                    "\n" +
+                    "edit <i> <field> /change <change>:\n" +
+                    "updates the <field> field of the <i>th task with <change>.\n" +
+                    "\n" +
+                    "list:\n" +
+                    "displays the current list of tasks.\n" +
+                    "\n" +
+                    "find <key>:\n" +
+                    "lists tasks with descriptions containing <key>.\n" +
+                    "\n" +
+                    "mark <i>:\n" +
+                    "marks the <i>th task as done.\n" +
+                    "\n" +
+                    "unmark <i>:\n" +
+                    "marks the <i>th task as not done yet.\n" +
+                    "\n" +
+                    "delete <i>:\n" +
+                    "deletes the <i>th task.\n" +
+                    "\n" +
+                    "help:\n" +
+                    "displays a list of valid commands and what they do.");
         }
     }
 }
