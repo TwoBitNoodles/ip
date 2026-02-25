@@ -1,41 +1,68 @@
 .root {
-    main-color: rgb(237, 255, 242);       /* Create a looked-up color called "main-color" within root. */
-    -fx-background-color: main-color;
+    /* colors */
+    -brown:         #36302d;
+    -green:         #555d50;
+    -light-yellow:  #e7d38a;
+    -yellow:        #d5a31a;
+    -cream:         #a9a099;
+    -cream-white:   #f0ede6;
+    -green-white:   #F8F8F8;
+
+    /* fonts */
+    -main-font: url("/fonts/GoogleSans-Regular.ttf");
+
+    /* background image */
+    -fx-background-image:   url("/images/background.png");
+    -fx-background-repeat:  repeat;
+    -fx-background-size:    200px 200px;
+}
+
+.app-bar {
+    -fx-background-color:   -brown;
+    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0.5, 0.5, 2);
+}
+
+.app-title {
+    -fx-text-fill:  -cream-white;
+    -fx-font:       28px -main-font;
 }
 
 .text-field {
-    -fx-background-color: #d9ffe2;
-    -fx-font: 20px "Arial";
+    -fx-background-color:   -cream;
+    -fx-text-fill:          black;
+    -fx-prompt-text-fill:   gray;
+    -fx-font:               14px -main-font;
+    -fx-background-radius:  1em 1em 1em 1em;
+    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0.2, 0, 0);
 }
 
 .button {
-    -fx-background-color: mediumspringgreen;
-    -fx-font: italic bold 16px "Arial";
+    -fx-background-color:   -yellow;
+    -fx-text-fill:          -brown;
+    -fx-font:               26px -main-font;
+    -fx-background-radius:  10em 10em 10em 10em;
+    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0.2, 0, 0);
 }
 
 .button:hover {
-    -fx-background-color:cyan;
-    -fx-font-size: 18px;
-}
-
-.button:pressed {
-    -fx-background-color:orange;
-    -fx-font-size: 20px;
+    -fx-background-color:   -green;
+    -fx-text-fill:          -cream;
+    -fx-font-size:          28px;
 }
 
 .scroll-pane,
 .scroll-pane .viewport {
-    -fx-background-color: transparent;
+    -fx-background-color:   transparent;
 }
 
 .scroll-bar {
-    -fx-font-size: 10px;  /* Change width of scroll bar. */
-    -fx-background-color: main-color;
+    -fx-background-color:   transparent;
+    -fx-font-size:          15px;  /* Change width of scroll bar. */
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #ff9cb4;
-    -fx-background-radius: 1em;
+    -fx-background-color:   -brown;
+    -fx-background-radius:  3em;
 }
 
 /* Hides the increment and decrement buttons. */

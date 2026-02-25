@@ -58,8 +58,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E][%s] %s (from: %s to: %s)",
-                (this.isDone()) ? "X" : " ",
+        return String.format("%s [E] %s (from: %s to: %s)",
+                (this.isDone()) ? "☑" : "☐",
                 this.getDesc(),
                 this.getStart(),
                 this.getEnd());

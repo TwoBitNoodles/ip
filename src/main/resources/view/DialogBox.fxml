@@ -5,18 +5,33 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.StackPane?>
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" stylesheets="@../css/dialogbox.css" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
+
         <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true">
-         <HBox.margin>
-            <Insets left="7.0" right="7.0" />
-         </HBox.margin>
-         <padding>
-            <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
-         </padding></Label>
-        <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+             <HBox.margin>
+                <Insets left="7.0" right="7.0" />
+             </HBox.margin>
+
+             <padding>
+                <Insets bottom="10.0" left="12.0" right="12.0" top="10.0" />
+             </padding>
+        </Label>
+
+        <StackPane styleClass="circular-pfp" alignment="TOP_RIGHT" maxHeight="50" maxWidth="86">
+            <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" >
+                <clip>
+                    <Circle centerX="25" centerY="25" radius="25" />
+                </clip>
+            </ImageView>
+        </StackPane>
+
     </children>
+
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
     </padding>
+
 </fx:root>
