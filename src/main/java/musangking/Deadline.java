@@ -37,8 +37,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D][%s] %s (by: %s)",
-                (this.isDone()) ? "X" : " ",
+        return String.format("%s [D] %s (by: %s)",
+                (this.isDone()) ? "☑" : "☐",
                 this.getDesc(),
                 this.by);
     }

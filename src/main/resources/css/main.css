@@ -10,7 +10,7 @@
     -main-font: url("/fonts/GoogleSans-Regular.ttf");
 
     /* background image */
-    -fx-background-image:   url("/images/browndurians.png");
+    -fx-background-image:   url("/images/background.png");
     -fx-background-repeat:  repeat;
     -fx-background-size:    200px 200px;
 }

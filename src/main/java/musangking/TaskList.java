@@ -135,7 +135,7 @@ public class TaskList {
         StringBuilder s = new StringBuilder("\n");
         int i = 1;
         for (Task task : this.tasks) {
-            s.append(String.format("%d.%s\n", i++, task));
+            s.append(String.format("%d. %s\n", i++, task));
         }
         return s.toString();
     }
