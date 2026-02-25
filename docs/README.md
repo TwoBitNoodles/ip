@@ -1,11 +1,12 @@
 # MusangKing User Guide
 
 Meet Your Productivity Companion: MusangKing! Struggling to keep track of your tasks,
-deadlines, and events? MusangKing is here to ~whip you into shape~ simplify your day
+deadlines, and events? MusangKing is here to ~~whip you into shape~~ simplify your day
 and help you stay organized — all through a simple, easy-to-use chat interface.
 
-![MusangKing UI](Ui.png)
-
+<p align="center">
+  <img src="Ui.png" alt="MusangKing example ui" width="200">
+</p>
 
 ## Quick Start
 
@@ -13,6 +14,7 @@ and help you stay organized — all through a simple, easy-to-use chat interface
 2. Download the latest .jar from [here](https://github.com/TwoBitNoodles/ip/releases).
 3. Copy the file to the folder you want to use as the home folder for your personal MusangKing.
 4. Open a command terminal, `cd` into the aforementioned folder, and use the `java -jar addressbook.jar` command to run the application.
+
 
 
 ## Features
@@ -23,7 +25,9 @@ Here are all the things you can do with MusangKing!
 ### Viewing help: `help`
 
 Displays a list of valid commands and what they do.
+
 Format: `help`
+
 Expected output:
 ```
 todo <desc>:
@@ -62,12 +66,15 @@ displays a list of valid commands and what they do.
 ```
 
 
+
 ### Adding todo tasks: `todo`
 
 Adds a todo-type task to the current list of tasks.
+
 Format: todo <desc>
 
 Example: `todo do the laundry`
+
 Expected output:
 ```
 Another task? Okay fine, I'll add it:
@@ -76,13 +83,17 @@ That makes a total of <n> tasks, you better finish them quickly!
 ```
 
 
+
 ### Adding deadlines: `deadline`
 
 Adds a deadline-type task to the current list of tasks.
+
 Format: deadline <desc> /by <date>
+
 Note: <date> must be entered in the following format: YYYY-MM-DD.
 
 Example: `deadline submit ip /by 2026-02-26`
+
 Expected output:
 ```
 Another task? Okay fine, I'll add it:
@@ -91,13 +102,17 @@ That makes a total of <n> tasks, you better finish them quickly!
 ```
 
 
+
 ### Adding events: `event`
 
 Adds an event-type task to the current list of tasks.
+
 Format: event <desc> /from <start> /to <end>
+
 Note: <start> and <end> must be entered in the following format: YYYY-MM-DD HH:MM.
 
 Example: `event project meeting /from 2026-02-25 13:00 /to 2026-02-25 17:00`
+
 Expected output:
 ```
 Another task? Okay fine, I'll add it:
@@ -106,11 +121,15 @@ That makes a total of <n> tasks, you better finish them quickly!
 ```
 
 
+
 ### Editing tasks: `edit`
 
 Edits the `<i>`th task by updating its <field> field with <change>.
+
 Format: `edit <i> <field> /change <change>`
+
 Example: `edit <i> desc /change buy groceries`
+
 Expected output:
 ```
 What do you need to change this task for? Tsk... so troublesome... here is the updated task:
@@ -118,10 +137,13 @@ What do you need to change this task for? Tsk... so troublesome... here is the u
 ```
 
 
+
 ### Listing tasks: `list`
 
 Displays the current list of tasks, in order of when each task was added to the list.
+
 Format: `list`
+
 Example output:
 ```
 OKOK here are ALLL your tasks:
@@ -129,13 +151,18 @@ OKOK here are ALLL your tasks:
 1. ☐ [T] buy groceries
 2. ☐ [D] submit ip (by: 2026-02-26)
 3. ☐ [E] project meeting (from: 2026-02-25 13:00 to: 2026-02-25 17:00)
-
 ```
+
+
+
 ### Finding tasks: `find`
 
 Lists tasks with descriptions containing `<key>`.
+
 Format: `find <key>`
+
 Example: `find ip`
+
 Expected output:
 ```
 Are any of these what you're looking for?
@@ -145,11 +172,15 @@ Are any of these what you're looking for?
 ```
 
 
+
 ### Marking tasks: `mark`
 
 Marks the `<i>`th task as done.
+
 Format: `mark <i>`
+
 Example: `mark 1`
+
 Expected output:
 ```
 It's about time! What took you so long?
@@ -157,11 +188,15 @@ It's about time! What took you so long?
 ```
 
 
+
 ### Unmarking tasks: `unmark`
 
 Marks the `<i>`task as not done yet.
+
 Format: `unmark <i>`
+
 Example: `unmark 2`
+
 Expected output:
 ```
 Huh? Still not done with this one?
@@ -169,11 +204,15 @@ Huh? Still not done with this one?
 ```
 
 
+
 ### Deleting tasks: `delete`
 
 Deletes the `<i>`the task.
+
 Format: `delete <i>`
+
 Example: `delete 1`
+
 Expected output:
 ```
 This task is gone, forever. (A long time).
@@ -182,7 +221,9 @@ You still have <n> tasks left. Don't slack off!
 ```
 
 
+
 ## Credits
+
 The images used for the chatbot avatars were originally created by [cellsdividing](https://www.instagram.com/cellsdividing/).
 
 The background image was initially obtained from [vecteezy](https://www.vecteezy.com/vector-art/11712585-durian-fruit-seamless-pattern-hand-drawn-in-doodle-style-wrapping-paper-background-wallpaper-textile),
