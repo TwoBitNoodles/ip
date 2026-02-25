@@ -33,17 +33,17 @@ public class ParserTest {
                 "event desc /from 2026-04-19 14:00 /to 2026-04-19 18:00");
         assertEquals("""
                     Another task? Okay fine, I'll add it:
-                    [T][ ] desc
+                    ☐ [T] desc
                     That makes a total of 1 tasks, you better finish them quickly!
                     """, todoDm.toString());
         assertEquals("""
                     Another task? Okay fine, I'll add it:
-                    [D][ ] desc (by: 2026-04-19)
+                    ☐ [D] desc (by: 2026-04-19)
                     That makes a total of 2 tasks, you better finish them quickly!
                     """, deadlineDm.toString());
         assertEquals("""
                     Another task? Okay fine, I'll add it:
-                    [E][ ] desc (from: 2026-04-19 14:00 to: 2026-04-19 18:00)
+                    ☐ [E] desc (from: 2026-04-19 14:00 to: 2026-04-19 18:00)
                     That makes a total of 3 tasks, you better finish them quickly!
                     """, eventDm.toString());
     }
@@ -62,9 +62,7 @@ public class ParserTest {
                 parser.parse(tasklist, input);
                 fail();
             } catch (Exception e) {
-                assertEquals("""
-                        What? Please enter a valid task number!
-                        """, e.getMessage());
+                assertEquals("What? Please enter a valid task number!", e.getMessage());
             }
         }
         for (String input : garbageInputs) {
@@ -72,9 +70,8 @@ public class ParserTest {
                 parser.parse(tasklist, input);
                 fail();
             } catch (Exception e) {
-                assertEquals("""
-                        The task number is supposed to be an integer!
-                        """, e.getMessage());
+                assertEquals("The task number is supposed to be an integer!",
+                        e.getMessage());
             }
         }
     }

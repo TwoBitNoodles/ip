@@ -30,8 +30,8 @@ public class DeadlineTest {
         Deadline deadline =new Deadline("desc",
                 LocalDate.parse("2026-04-19"));
         deadline.markDone();
-        assertEquals("[D][X] desc (by: 2026-04-19)", deadline.toString());
+        assertEquals("☑ [D] desc (by: 2026-04-19)", deadline.toString());
         deadline.unmarkDone();
-        assertEquals("[D][ ] desc (by: 2026-04-19)", deadline.toString());
+        assertEquals("☐ [D] desc (by: 2026-04-19)", deadline.toString());
     }
 }

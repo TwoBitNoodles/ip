@@ -35,11 +35,11 @@ public class EventTest {
                 LocalDateTime.parse("2026-04-19T18:00"));
         event.markDone();
         assertEquals(
-                "[E][X] task (from: 2026-04-19 14:00 to: 2026-04-19 18:00)",
+                "☑ [E] task (from: 2026-04-19 14:00 to: 2026-04-19 18:00)",
                 event.toString());
         event.unmarkDone();
         assertEquals(
-                "[E][ ] task (from: 2026-04-19 14:00 to: 2026-04-19 18:00)",
+                "☐ [E] task (from: 2026-04-19 14:00 to: 2026-04-19 18:00)",
                 event.toString());
     }
 }

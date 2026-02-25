@@ -19,8 +19,8 @@ public class TodoTest {
     public void testToString() {
         Todo todo = new Todo("desc");
         todo.markDone();
-        assertEquals("[T][X] desc", todo.toString());
+        assertEquals("☑ [T] desc", todo.toString());
         todo.unmarkDone();
-        assertEquals("[T][ ] desc", todo.toString());
+        assertEquals("☐ [T] desc", todo.toString());
     }
 }
