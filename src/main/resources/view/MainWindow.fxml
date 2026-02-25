@@ -35,26 +35,30 @@
             </center>
 
             <bottom>
+
                 <HBox prefHeight="55.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                    <children>
+
                        <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Message">
                            <HBox.margin>
-                               <Insets left="7.0" right="7.0" />
+                               <Insets left="15.0" right="5.0" top="15.0" bottom="15.0" />
                            </HBox.margin>
                        </TextField>
+
                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="41.0" prefWidth="76.0" text="⮞">
                            <HBox.margin>
-                               <Insets left="7.0" right="7.0" />
+                               <Insets left="5.0" right="15.0" top="15.0" bottom="15.0" />
                            </HBox.margin>
                            <padding>
                                <Insets bottom="0.0" left="0.0" right="0.0" top="0.0" />
                            </padding>
                        </Button>
+
                    </children>
-                    <BorderPane.margin>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                    </BorderPane.margin>
+
+
                 </HBox>
+
             </bottom>
 
         </BorderPane>
