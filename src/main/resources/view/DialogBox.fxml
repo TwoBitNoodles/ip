@@ -20,10 +20,10 @@
              </padding>
         </Label>
 
-        <StackPane styleClass="circular-pfp" alignment="TOP_RIGHT" maxHeight="86" maxWidth="86">
-            <ImageView fx:id="displayPicture" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" >
+        <StackPane styleClass="circular-pfp" alignment="TOP_RIGHT" maxHeight="50" maxWidth="86">
+            <ImageView fx:id="displayPicture" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" >
                 <clip>
-                    <Circle centerX="40" centerY="40" radius="40" />
+                    <Circle centerX="25" centerY="25" radius="25" />
                 </clip>
             </ImageView>
         </StackPane>

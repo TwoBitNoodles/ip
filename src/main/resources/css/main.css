@@ -1,67 +1,64 @@
 .root {
-    /*main-color: rgb(243, 170, 118);*/
-    -main-color: rgb(147, 92, 129);
-    -sub-color: rgb(118, 62, 110);
-    -accent-color: rgb(240, 195, 64);
-    -sub-accent-color: rgb(252, 226, 173);
-    -light-text-color: rgb(244, 239, 242);
-    -faded-text-color: rgb(163, 139, 160);
-    -dark-text-color: rgb(69, 27, 73);
-    /*-bg-color: #896D31;*/
-    -bg-color: #8d5d00;
-    -fx-background-color: -dark-text-color;
+    /* colors */
+    -brown:         #36302d;
+    -green:         #555d50;
+    -light-yellow:  #e7d38a;
+    -yellow:        #d5a31a;
+    -cream:         #a9a099;
+
+    /* fonts */
+    -main-font: url("/fonts/GoogleSans-Regular.ttf");
+
+    /* background image */
+    -fx-background-image:   url("/images/browndurians.png");
+    -fx-background-repeat:  repeat;
+    -fx-background-size:    200px 200px;
 }
 
 .app-bar {
-    -fx-background-color: -sub-color;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0.5, 2);
+    -fx-background-color:   -brown;
+    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0.5, 2);
 }
 
 .app-title {
-    -fx-text-fill: -light-text-color;
-    -fx-font: 28px "Noto Sans";
+    -fx-text-fill:  white;
+    -fx-font:       28px -main-font;
 }
 
 .text-field {
-    -fx-background-color: -sub-color;
-    -fx-background-radius: 1em 1em 1em 1em;
-    -fx-font: 14px "Noto Sans";
-    -fx-text-fill: -light-text-color;
-    -fx-prompt-text-fill: -faded-text-color;
+    -fx-background-color:   -cream;
+    -fx-text-fill:          -brown;
+    -fx-prompt-text-fill:   gray;
+    -fx-font:               14px -main-font;
+    -fx-background-radius:  1em 1em 1em 1em;
 }
 
 .button {
-    -fx-background-color: -accent-color;
-    -fx-background-radius: 10em 10em 10em 10em;
-    -fx-font: 26px "Noto Sans";
-    -fx-text-fill: -dark-text-color;
+    -fx-background-color:   -yellow;
+    -fx-text-fill:          -brown;
+    -fx-font:               26px -main-font;
+    -fx-background-radius:  10em 10em 10em 10em;
 }
 
 .button:hover {
-    -fx-background-color: -main-color;
-    -fx-text-fill: -light-text-color;
-    -fx-font-size: 28px;
-}
-
-.button:pressed {
-    -fx-background-color: -sub-color;
-    -fx-text-fill: -faded-text-color;
-    -fx-font-size: 28px;
+    -fx-background-color:   -green;
+    -fx-text-fill:          -cream;
+    -fx-font-size:          28px;
 }
 
 .scroll-pane,
 .scroll-pane .viewport {
-    -fx-background-color: transparent;
+    -fx-background-color:   transparent;
 }
 
 .scroll-bar {
-    -fx-font-size: 15px;  /* Change width of scroll bar. */
-    -fx-background-color: transparent;
+    -fx-background-color:   transparent;
+    -fx-font-size:          15px;  /* Change width of scroll bar. */
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: -sub-color;
-    -fx-background-radius: 1em;
+    -fx-background-color:   -brown;
+    -fx-background-radius:  3em;
 }
 
 /* Hides the increment and decrement buttons. */
@@ -69,16 +66,5 @@
 .scroll-bar .decrement-button {
     -fx-pref-height: 0;
     -fx-opacity: 0;
-}
-
-#displayBackground {
-    -fx-opacity: 0.35;
-
-    /* Change size of image. */
-    -fx-scale-x: 1;
-    -fx-scale-y: 1;
-
-    /* Rotate image clockwise by degrees. */
-    -fx-rotate: 0;
 }
 

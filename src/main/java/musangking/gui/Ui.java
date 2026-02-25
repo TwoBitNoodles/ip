@@ -8,20 +8,16 @@ public class Ui {
 
     public static class GreetingMessage extends DisplayMessage {
         private GreetingMessage() {
-            super("""
-                    I AM THE MIGHTY MUSANGKING!
-                    With my help, you can achieve ALL your goals!
-                    Just tell me what you want to do.
-                    """);
+            super("I AM THE MIGHTY MUSANGKING! " +
+                    "With my help, you can achieve ALL your goals! " +
+                    "Just tell me what you want to do.");
         }
     }
 
     public static class GoodbyeMessage extends DisplayMessage {
         private GoodbyeMessage() {
-            super("""
-                    Good riddance! Time for me to relax...
-                    ...You'll come back though, right?
-                    """);
+            super("Good riddance! Time for me to relax... " +
+                  "...You'll come back though, right?");
         }
     }
 
@@ -93,25 +89,38 @@ public class Ui {
 
     public static class HelpMessage extends DisplayMessage {
         private HelpMessage() {
-            super("""
-                    todo <desc>
-                                : creates a new todo-type task with the
-                                  description <desc>.
-                    deadline <desc> /by <by>
-                                : creates a new deadline-type with the
-                                  description <desc>, due by <by>.
-                    event <desc> /from <start> /to <end>
-                                : creates a new event-type task with the
-                                  description <desc>, that starts at <start>
-                                  and ends at <end>.
-                    list        : displays the current list of tasks.
-                    find <key>  : lists tasks with descriptions containing <key>.
-                    mark <i>    : marks the <i>th task as done.
-                    unmark <i>  : marks the <i>th task as not done yet.
-                    delete <i>  : deletes the <i>th task.
-                    help        : displays a valid list of commands and
-                                  what they do.
-                    """);
+            super("todo <desc>:\n" +
+                  "creates a new todo-type task with the description <desc>.\n" +
+                  "\n" +
+                  "deadline <desc> /by <by>:\n" +
+                  "creates a new deadline-type with the" +
+                  "description <desc>, due by <by>.\n" +
+                  "\n" +
+                  "event <desc> /from <start> /to <end>:\n" +
+                  "creates a new event-type task with the" +
+                  "description <desc>, that starts at <start>" +
+                  "and ends at <end>.\n" +
+                  "\n" +
+                  "edit <i> <field> /change <change>:\n" +
+                  "update the <field> field of the <i>th task with <change>.\n" +
+                  "\n" +
+                  "list:\n" +
+                  "displays the current list of tasks.\n" +
+                  "\n" +
+                  "find <key>:\n" +
+                  "lists tasks with descriptions containing <key>.\n" +
+                  "\n" +
+                  "mark <i>:\n" +
+                  "marks the <i>th task as done.\n" +
+                  "\n" +
+                  "unmark <i>:\n" +
+                  "marks the <i>th task as not done yet.\n" +
+                  "\n" +
+                  "delete <i>:\n" +
+                  "deletes the <i>th task.\n" +
+                  "\n" +
+                  "help:\n" +
+                  "displays a valid list of commands and what they do.");
         }
     }
 }
