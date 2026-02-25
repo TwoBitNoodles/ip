@@ -21,24 +21,18 @@ public class Storage {
     public static DisplayMessage initialiseFileManager(TaskList tasklist) throws IOException {
         checkIfDirectoryExists();
         if (!fileExists()) {
-            return new DisplayMessage("""
-                    New session in progress.
-                    No save files were found.
-                    Creating new save file...
-                    """);
+            return new DisplayMessage("New session in progress. " +
+                                      "No save files were found. " +
+                                      "Creating new save file...");
         } else if (fileIsCorrupted()) {
-            return new DisplayMessage("""
-                    New session in progress.
-                    The save file from the previous session is corrupted.
-                    Data from the previous session may be lost.
-                    Creating new save file...
-                    """);
+            return new DisplayMessage("New session in progress. " +
+                                      "The save file from the previous session is corrupted. " +
+                                      "Data from the previous session may be lost. " +
+                                      "Creating new save file...");
         } else {
             initialiseTaskList(tasklist);
-            return new DisplayMessage("""
-                    New session in progress.
-                    Recovering data from the previous session...
-                    """);
+            return new DisplayMessage("New session in progress. " +
+                                      "Recovering data from the previous session...");
         }
     }
 

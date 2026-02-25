@@ -10,44 +10,34 @@ public class Exceptions {
 
     public static class InvalidCommandException extends MusangKingException {
         private InvalidCommandException() {
-            super("""
-                    Huh? I don't know what you want me to do!
-                    To view all the commands I understand, type "help".
-                    """);
+            super("Huh? I don't know what you want me to do! " +
+                  "To view all the commands I understand, type \"help\".");
         }
     }
 
     public static class MissingFieldException extends MusangKingException {
         public MissingFieldException(String info, String cmd) {
-            super(String.format("""
-                    If you don't tell me %s,
-                    I can't %s!
-                    """, info, cmd));
+            super(String.format("If you don't tell me %s, " +
+                                "I can't %s!", info, cmd));
         }
     }
 
     public static class InvalidInputException extends MusangKingException {
         public InvalidInputException(String param, String type) {
-            super(String.format("""
-                    The %s is supposed to be %s!
-                    """, param, type));
+            super(String.format("The %s is supposed to be %s!", param, type));
         }
     }
 
     public static class TaskOutOfBoundsException extends MusangKingException {
         private TaskOutOfBoundsException() {
-            super("""
-                    What? Please enter a valid task number!
-                    """);
+            super("What? Please enter a valid task number!");
         }
     }
 
     public static class DataCorruptionException extends MusangKingException {
         private DataCorruptionException() {
-            super("""
-                    The save file from the previous session is corrupted.
-                    Creating new save file...
-                    """);
+            super("The save file from the previous session is corrupted. " +
+                  "Creating new save file...");
         }
     }
 
@@ -64,19 +54,15 @@ public class Exceptions {
 
     private static class IllegalArgumentException extends MusangKingException {
         private IllegalArgumentException() {
-            super("""
-                    You little... I see what you're trying to do!
-                    Can't you enter the correct number of arguments?
-                    And in the right order, please. Don't try to test me!
-                    """);
+            super("You little... I see what you're trying to do! " +
+                  "Can't you enter the correct number of arguments? " +
+                  "And in the right order, please. Don't try to test me!");
         }
     }
 
     public static class InvalidTaskFieldException extends MusangKingException {
         public InvalidTaskFieldException(String taskType, String field) {
-            super(String.format("""
-                    %s tasks don't have a %s field!
-                    """, taskType, field));
+            super(String.format("%s tasks don't have a %s field!", taskType, field));
         }
     }
 }

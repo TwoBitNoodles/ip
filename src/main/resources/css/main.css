@@ -5,6 +5,8 @@
     -light-yellow:  #e7d38a;
     -yellow:        #d5a31a;
     -cream:         #a9a099;
+    -cream-white:   #f0ede6;
+    -green-white:   #F8F8F8;
 
     /* fonts */
     -main-font: url("/fonts/GoogleSans-Regular.ttf");
@@ -17,20 +19,21 @@
 
 .app-bar {
     -fx-background-color:   -brown;
-    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0.5, 2);
+    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0.5, 0.5, 2);
 }
 
 .app-title {
-    -fx-text-fill:  white;
+    -fx-text-fill:  -cream-white;
     -fx-font:       28px -main-font;
 }
 
 .text-field {
     -fx-background-color:   -cream;
-    -fx-text-fill:          -brown;
+    -fx-text-fill:          black;
     -fx-prompt-text-fill:   gray;
     -fx-font:               14px -main-font;
     -fx-background-radius:  1em 1em 1em 1em;
+    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0.2, 0, 0);
 }
 
 .button {
@@ -38,6 +41,7 @@
     -fx-text-fill:          -brown;
     -fx-font:               26px -main-font;
     -fx-background-radius:  10em 10em 10em 10em;
+    -fx-effect:             dropshadow(gaussian, rgba(0, 0, 0, 0.2), 20, 0.2, 0, 0);
 }
 
 .button:hover {

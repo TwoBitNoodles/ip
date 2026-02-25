@@ -29,7 +29,11 @@
             <center>
                   <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0" BorderPane.alignment="CENTER">
                       <content>
-                          <VBox fx:id="dialogContainer" prefHeight="475.0" prefWidth="383.0" />
+                          <VBox fx:id="dialogContainer" prefHeight="475.0" prefWidth="383.0">
+                              <VBox.margin>
+                                  <Insets left="15.0" right="15.0" />
+                              </VBox.margin>
+                          </VBox>
                       </content>
                   </ScrollPane>
             </center>
