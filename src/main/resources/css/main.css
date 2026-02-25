@@ -47,7 +47,6 @@
 .button:hover {
     -fx-background-color:   -green;
     -fx-text-fill:          -cream;
-    -fx-font-size:          28px;
 }
 
 .scroll-pane,
