@@ -10,7 +10,8 @@ and help you stay organized — all through a simple, easy-to-use chat interface
 
 ## Quick Start
 
-1. Ensure you have Java 17 or above installed in your computer. 
+1. Ensure you have Java 17 or above installed in your computer.
+   (Mac users: Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).)
 2. Download the latest .jar from [here](https://github.com/TwoBitNoodles/ip/releases).
 3. Copy the file to the folder you want to use as the home folder for your personal MusangKing.
 4. Open a command terminal, `cd` into the aforementioned folder, and use the `java -jar addressbook.jar` command to run the application.
